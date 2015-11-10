@@ -13,7 +13,7 @@ description: none
 
 利用原型让一个引用类继承另一个引用类型的属性和方法
 
-```javascript
+{% highlight bash linenos %}
 function superType() {
     this.property = true;
 }
@@ -33,7 +33,7 @@ subType.prototype.getSubValue = function () {
 
 var instance = new subType();
 console.log(instance.getSuperValue());
-```
+{% endhighlight %}
 
 * 借用构造函数
 
