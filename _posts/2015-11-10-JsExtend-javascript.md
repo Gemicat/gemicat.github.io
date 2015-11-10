@@ -7,13 +7,11 @@ tags: [javascript]
 description: none
 ---
 
-[TOC]
-
 ###原型链
 
 利用原型让一个引用类继承另一个引用类型的属性和方法
 
-{% highlight bash linenos %}
+{% highlight %}
 function superType() {
     this.property = true;
 }
