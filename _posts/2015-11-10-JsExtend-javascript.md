@@ -11,7 +11,7 @@ description: none
 
 利用原型让一个引用类继承另一个引用类型的属性和方法
 
-{% highlight %}
+{% highlight bash linenos %}
 function superType() {
     this.property = true;
 }
