@@ -3,7 +3,7 @@ layout: post
 title: 列表
 date: 2015-11-12
 categories: blog
-tags: [javascript]
+tags: [数据结构与算法javascript描述]
 description: none
 ---
 
