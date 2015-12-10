@@ -39,9 +39,7 @@ header-img: "img/semantic.jpg"
 {% endfor %}
 </div>
 
-> 使用方法：
-* 点击标签，自动跳转
-* :)
+>点击标签，自动跳转 :)
 
 <ul class="listing">
 {% for tag in site.tags %}
