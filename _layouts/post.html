@@ -7,6 +7,15 @@ layout: default
     header.intro-header{
         background-image: url('{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}')
     }
+    .intro-header .Tags a{
+        padding: 0px 10px;
+        border: 1px solid #fff;
+        border-radius: 999em;
+        line-height: 24px;
+        font-size: 12px;
+        color: #fff;
+        text-decoration: none;
+    }
 </style>
 <header class="intro-header" >
     <div class="container">
@@ -15,7 +24,7 @@ layout: default
                 <div class="post-heading">
                     <div class="Tags">
                         {% for tag in page.tags %}
-                        <a class="tag" href="/Tags/#{{ tag }}" title="{{ tag }}">{{ tag }}</a>
+                        <a class="tag" href="/tags/#{{ tag }}" title="{{ tag }}">{{ tag }}</a>
                         {% endfor %}
                     </div>
                     <h1>{{ page.title }}</h1>
