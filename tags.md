@@ -18,10 +18,11 @@ header-img: "img/semantic.jpg"
 #tag_cloud a{
 	padding:5px 10px;
 	border-radius:5px;
-	border:1px solid #208C5B;
+	/*border:1px solid #208C5B;*/
 	margin:0px 10px;
 	color: #fff;
 	font-size: 14px;
+	background: #208C5B;
 }
 </style>
 
