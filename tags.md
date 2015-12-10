@@ -14,10 +14,20 @@ header-img: "img/semantic.jpg"
 
 ##基因列表
 
+<style type="text/css">
+#tag_cloud a{
+	padding:5px 10px;
+	border-radius:5px;
+	border:1px solid #208C5B;
+	margin:0px 10px;
+	color: #fff;
+	font-size: 14px;
+}
+</style>
 
 <div id='tag_cloud'>
 {% for tag in site.tags %}
-<a href="#{{ tag[0] }}" title="{{ tag[0] }}" rel="{{ tag[1].size }}" style="padding:5px 10px; border-radius:5px; border:1px solid #fff; margin:0px 10px; display:block;">{{ tag[0] }}</a>
+<a href="#{{ tag[0] }}" title="{{ tag[0] }}" rel="{{ tag[1].size }}">{{ tag[0] }}</a>
 {% endfor %}
 </div>
 
