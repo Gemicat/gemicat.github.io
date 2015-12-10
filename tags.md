@@ -26,10 +26,10 @@ header-img: "img/semantic.jpg"
 }
 /*每一项标题样式*/
 .listing-seperator{
-	margin-top: 5px;
-	font-weight: 200px;
+	margin-top: 20px;
 	font-family: -apple-system,"Helvetica Neue",Arial,"PingFang SC","Hiragino Sans GB",STHeiti,"Microsoft YaHei","Microsoft JhengHei","Source Han Sans SC","Noto Sans CJK SC","Source Han Sans CN","Noto Sans SC","Source Han Sans TC","Noto Sans CJK TC","WenQuanYi Micro Hei",SimSun,sans-serif;
 	font-size: 20px;
+	color: #208C5B;
 }
 .listing-item{
 	list-style: none;
