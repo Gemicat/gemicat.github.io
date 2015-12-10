@@ -15,14 +15,30 @@ header-img: "img/semantic.jpg"
 ##基因列表
 
 <style type="text/css">
+/*设置列表的颜色标题样式*/
 #tag_cloud a{
 	padding:5px 10px;
 	border-radius:5px;
-	/*border:1px solid #208C5B;*/
-	margin:0px 10px;
+	margin:0px 2px;
 	color: #fff;
 	font-size: 14px;
 	background: #208C5B;
+}
+/*每一项标题样式*/
+.listing-seperator{
+	margin-top: 5px;
+	font-weight: 200px;
+	font-family: -apple-system,"Helvetica Neue",Arial,"PingFang SC","Hiragino Sans GB",STHeiti,"Microsoft YaHei","Microsoft JhengHei","Source Han Sans SC","Noto Sans CJK SC","Source Han Sans CN","Noto Sans SC","Source Han Sans TC","Noto Sans CJK TC","WenQuanYi Micro Hei",SimSun,sans-serif;
+	font-size: 20px;
+}
+.listing-item{
+	list-style: none;
+}
+.listing-item a{
+	text-decoration: none;
+}
+.listing-item a:hover{
+	color: #208C5B;
 }
 </style>
 
