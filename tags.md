@@ -40,6 +40,7 @@ header-img: "img/semantic.jpg"
 </div>
 
 >使用方法：
+
 >* 点击标签，自动跳转
 >* :)
 
