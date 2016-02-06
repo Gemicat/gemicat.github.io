@@ -7,6 +7,16 @@
 		window.onload = function(){
 			var oBtn = document.getElementById('btn');
 			var timer = null;
+			// 判断是否在回到顶部过程中中断
+			flag = true;
+
+			// 中断滑动
+			window.onscroll = function(){
+				if(!flag){
+					clearInterval(timer);
+				}
+				flag = false;
+			}
 
 			oBtn.onclick = function(){
 				timer = setInterval(function(){
@@ -15,6 +25,7 @@
 					if(scrollTop == 0){
 						clearInterval(timer);
 					}
+					flag = true;
 					document.documentElement.scrollTop = document.body.scrollTop = scrollTop + speed;
 				}, 30);
 			}
