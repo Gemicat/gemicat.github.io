@@ -9,7 +9,7 @@ description: none
 
 ##笔试题
 
-1.检测字符串中字母是否被“+”包围。
+1.检测字符串中字母是否被“+”包围.
 
     function testSymbols(str) {
         var arr = str.split("");
@@ -30,7 +30,7 @@ description: none
         return true;
     }
 
-2.给定一个数组，问数组中最大的数能否用除此数字外任意个数组中的元素相加而成。
+2.给定一个数组，问数组中最大的数能否用除此数字外任意个数组中的元素相加而成.
 
     var str = "++d+-o+u+b--a++-";
     console.log(testSymbols(str));
@@ -80,7 +80,7 @@ description: none
     }
     console.log(apple(5));
 
-4.年终奖
+4.年终奖问题
 
     function findMax(x, y, sum) {
         sum += arr[x][y];
