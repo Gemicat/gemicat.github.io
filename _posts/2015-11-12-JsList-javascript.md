@@ -20,117 +20,115 @@ description: none
 
 ###实现
 
-{% highlight bash linenos %}
-function list() {
-    this.listSize = 0;
-    this.pos = 0;
-    this.dataStore = [];//初始化一个空数组来保存列表
-    this.clear = clear;
-    this.find = find;
-    this.toString = toString;
-    this.insert = insert;
-    this.append = append;
-    this.remove = remove;
-    this.front = front;
-    this.end = end;
-    this.prev = prev;
-    this.next = next;
-    this.length = length;
-    this.currPos = currPos;
-    this.moveTo = moveTo;
-    this.getElement = getElement;
-    this.contains = contains;
-}
+    function list() {
+        this.listSize = 0;
+        this.pos = 0;
+        this.dataStore = [];//初始化一个空数组来保存列表
+        this.clear = clear;
+        this.find = find;
+        this.toString = toString;
+        this.insert = insert;
+        this.append = append;
+        this.remove = remove;
+        this.front = front;
+        this.end = end;
+        this.prev = prev;
+        this.next = next;
+        this.length = length;
+        this.currPos = currPos;
+        this.moveTo = moveTo;
+        this.getElement = getElement;
+        this.contains = contains;
+    }
 
-//append添加元素
-function append(element) {
-    this.dataStore[listSize++] = element;
-}
+    //append添加元素
+    function append(element) {
+        this.dataStore[listSize++] = element;
+    }
 
-//find查找元素
-function find(element) {
-    var len = this.dataStore.length;
-    for (var i = 0; i < len; i++) {
-        if (this.dataStore[i] === element) {
-            return i;
+    //find查找元素
+    function find(element) {
+        var len = this.dataStore.length;
+        for (var i = 0; i < len; i++) {
+            if (this.dataStore[i] === element) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    //remove移除元素
+    function remove(element) {
+        var foundAt = this.find(element);
+        if (foundAt > -1) {
+            this.dataStore.splice(foundAt, 1);
+            --this.listSize;
+            return true;
+        }
+        return false;
+    }
+
+    //length列表元素个数
+    function length() {
+        return this.listSize;
+    }
+
+    //toString显示列表元素
+    function toString() {
+        return this.dataStore;
+    }
+
+    //insert想列表插入元素
+    function insert(element, after) {
+        var insertAfter = this.find(after);
+        if (insertAfter > -1) {
+            this.dataStore.splice(insertAfter, 0, element);
+            ++this.listSize;
+            return true;
+        }
+        return false;
+    }
+
+    //clear清空列表
+    function clear() {
+        this.dataStore = [];
+        this.listSize = 0;
+    }
+
+    //contains判断元素是否在列表中
+    function cotains(element) {
+        var foundAt = this.find(element);
+        if (foundAt > -1) {
+            return true;
+        }
+        return false;
+    }
+
+    //front移动到开头
+    function front() {
+        this.pos = 0;
+    }
+
+    //end移动到末尾
+    function end {
+        this.pos = this.listSize;
+    }
+
+    //先前移动一位
+    function prev() {
+        if (this.pos > 0) {
+            --this.pos;
         }
     }
-    return -1;
-}
 
-//remove移除元素
-function remove(element) {
-    var foundAt = this.find(element);
-    if (foundAt > -1) {
-        this.dataStore.splice(foundAt, 1);
-        --this.listSize;
-        return true;
+    //向后移动一位
+    function next() {
+        if (this.pos < this.listSize) {
+            ++this.pos;
+        }
     }
-    return false;
-}
 
-//length列表元素个数
-function length() {
-    return this.listSize;
-}
-
-//toString显示列表元素
-function toString() {
-    return this.dataStore;
-}
-
-//insert想列表插入元素
-function insert(element, after) {
-    var insertAfter = this.find(after);
-    if (insertAfter > -1) {
-        this.dataStore.splice(insertAfter, 0, element);
-        ++this.listSize;
-        return true;
+    //currPos返回当前位置
+    function currPos() {
+        return this.pos;
     }
-    return false;
-}
-
-//clear清空列表
-function clear() {
-    this.dataStore = [];
-    this.listSize = 0;
-}
-
-//contains判断元素是否在列表中
-function cotains(element) {
-    var foundAt = this.find(element);
-    if (foundAt > -1) {
-        return true;
-    }
-    return false;
-}
-
-//front移动到开头
-function front() {
-    this.pos = 0;
-}
-
-//end移动到末尾
-function end {
-    this.pos = this.listSize;
-}
-
-//先前移动一位
-function prev() {
-    if (this.pos > 0) {
-        --this.pos;
-    }
-}
-
-//向后移动一位
-function next() {
-    if (this.pos < this.listSize) {
-        ++this.pos;
-    }
-}
-
-//currPos返回当前位置
-function currPos() {
-    return this.pos;
-}
-{% endhighlight %}

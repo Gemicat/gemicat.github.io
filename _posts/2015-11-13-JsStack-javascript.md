@@ -17,42 +17,40 @@ description: none
 
 ###2.栈的实现
 
-{% highlight bash linenos %}
-function Stack() {
-    this.dataStore = [];
-    this.top = 0;
-    this.push = push;
-    this.pop = pop;
-    this.peek = peek;
-    this.length = length;
-    this.clear = clear;
-}
+    function Stack() {
+        this.dataStore = [];
+        this.top = 0;
+        this.push = push;
+        this.pop = pop;
+        this.peek = peek;
+        this.length = length;
+        this.clear = clear;
+    }
 
-//push入栈操作
-function push(element) {
-    this.dataStore[this.top++] = element;
-}
+    //push入栈操作
+    function push(element) {
+        this.dataStore[this.top++] = element;
+    }
 
-//pop出栈操作
-function pop() {
-    return this.dataStore[--this.top];
-}
+    //pop出栈操作
+    function pop() {
+        return this.dataStore[--this.top];
+    }
 
-//peek预览栈顶元素
-function peek() {
-    return this.dataStore[this.top - 1];
-}
+    //peek预览栈顶元素
+    function peek() {
+        return this.dataStore[this.top - 1];
+    }
 
-//length查询栈元素个数
-function length() {
-    return this.top;
-}
+    //length查询栈元素个数
+    function length() {
+        return this.top;
+    }
 
-//clear清空栈
-function clear() {
-    this.top = 0;
-}
-{% endhighlight %}
+    //clear清空栈
+    function clear() {
+        this.top = 0;
+    }
 
 ###3.使用Stack类
 
@@ -70,21 +68,19 @@ function clear() {
 
 >此算法只针对基数为2~9的情况。
 
-{% highlight bash linenos %}
-function mulBase(num, base) {
-    var s = new Stack();
-    do {
-        var eachBit = num % base;
-        var num = num / base;
-        s.push(eachBit);
-    } while (num > 0);
-    var str = '';
-    while (s.length() > 0) {
-        str += s.pop();
+    function mulBase(num, base) {
+        var s = new Stack();
+        do {
+            var eachBit = num % base;
+            var num = num / base;
+            s.push(eachBit);
+        } while (num > 0);
+        var str = '';
+        while (s.length() > 0) {
+            str += s.pop();
+        }
+        return str;
     }
-    return str;
-}
-{% endhighlight %}
 
 ####3.2回文
 
@@ -92,41 +88,37 @@ function mulBase(num, base) {
 
 使用栈，可以轻松判断一个字符串是否是回文。我们将拿到的字符串的每个字符按从左至右的顺序压入栈。当字符串中的字符都入栈后，栈内就保存了一个反转后的字符串，最后的字符在栈顶，第一个字符在栈底.
 
-{% highlight bash linenos %}
-function isPalidrome(word) {
-    var s = new Stack();
-    for (var i = 0; i < word.length; i++) {
-        s.push(word[i]);
+    function isPalidrome(word) {
+        var s = new Stack();
+        for (var i = 0; i < word.length; i++) {
+            s.push(word[i]);
+        }
+        var rword = "";
+        while (s.length() > 0) {
+            rword += s.pop();
+        }
+        if (word === rword) {
+            return true;
+        } else {
+            return false;
+        }
     }
-    var rword = "";
-    while (s.length() > 0) {
-        rword += s.pop();
-    }
-    if (word === rword) {
-        return true;
-    } else {
-        return false;
-    }
-}
-{% endhighlight %}
 
 ####3.3递归的演示
 
 使用栈来模拟阶乘
 
-{% highlight bash linenos %}
-function factorial(n) {
-    var s = new Stack();
-    for (var i = 0; i < n; i++) {
-        s.push(i);
+    function factorial(n) {
+        var s = new Stack();
+        for (var i = 0; i < n; i++) {
+            s.push(i);
+        }
+        var product = 1;
+        while (s.length() > 0) {
+            product *= s.pop();
+        }
+        return product;
     }
-    var product = 1;
-    while (s.length() > 0) {
-        product *= s.pop();
-    }
-    return product;
-}
-{% endhighlight %}
 
 ###4.练习
 
@@ -134,25 +126,23 @@ function factorial(n) {
 
 >遍历一遍表达式，如果遇到"("则压入栈，如果遇到")"检查栈顶是否是"("，如果不是则不匹配，遍历一遍之后，检查栈是否为空，如果不为空则不匹配。
 
-{% highlight bash linenos %}
-function cheackBracket(str) {
-    var arr = str.split("");
-    var s = new Stack();
-    for (var i = 0; i < arr.length; i++) {
-        if (arr[i] === "(") {
-            s.push(arr[i]);
-        }
-        if (arr[i] === ")") {
-            if (s.pop() === "(") {
-                return true;
-            } else {
-                return i;
+    function cheackBracket(str) {
+        var arr = str.split("");
+        var s = new Stack();
+        for (var i = 0; i < arr.length; i++) {
+            if (arr[i] === "(") {
+                s.push(arr[i]);
+            }
+            if (arr[i] === ")") {
+                if (s.pop() === "(") {
+                    return true;
+                } else {
+                    return i;
+                }
             }
         }
+        if (s.length() > 0) {
+            return str.lastIndexOf("(");
+        }
+        return true;
     }
-    if (s.length() > 0) {
-        return str.lastIndexOf("(");
-    }
-    return true;
-}
-{% endhighlight %}

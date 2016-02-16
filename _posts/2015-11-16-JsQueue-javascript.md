@@ -17,54 +17,52 @@ description: none
 
 ###2.队列的实现
 
-{% highlight bash linenos %}
-function Queue() {
-    this.dataStore = [];
-    this.enqueue = enqueue;
-    this.dequeue = dequeue;
-    this.front = front;
-    this.back = back;
-    this.toString = toString;
-    this.empty = empty;
-}
-
-//enqueue向队尾添加一个元素
-function enqueue(element) {
-    this.dataStore.push(element);
-}
-
-//dequeue()删除队首的元素
-function dequeue() {
-    this.dataStore.shift();
-}
-
-//front()读取队首元素
-function front() {
-    return this.dataStore[0];
-}
-
-//back()读取队尾元素
-function back() {
-    return this.dataStore[this.dataStore.length - 1];
-}
-
-//toString()显示所有元素
-function toString() {
-    var retStr = "";
-    for (var i = 0; i < this.dataStore.length; i++) {
-        retStr += this.dataStore + "\n";
+    function Queue() {
+        this.dataStore = [];
+        this.enqueue = enqueue;
+        this.dequeue = dequeue;
+        this.front = front;
+        this.back = back;
+        this.toString = toString;
+        this.empty = empty;
     }
-    return retStr;
-}
 
-//empty()判断是否为空
-function empty() {
-    if (this.dataStore.length === 0) {
-        return true;
+    //enqueue向队尾添加一个元素
+    function enqueue(element) {
+        this.dataStore.push(element);
     }
-    return false;
-}
-{% endhighlight %}
+
+    //dequeue()删除队首的元素
+    function dequeue() {
+        this.dataStore.shift();
+    }
+
+    //front()读取队首元素
+    function front() {
+        return this.dataStore[0];
+    }
+
+    //back()读取队尾元素
+    function back() {
+        return this.dataStore[this.dataStore.length - 1];
+    }
+
+    //toString()显示所有元素
+    function toString() {
+        var retStr = "";
+        for (var i = 0; i < this.dataStore.length; i++) {
+            retStr += this.dataStore + "\n";
+        }
+        return retStr;
+    }
+
+    //empty()判断是否为空
+    function empty() {
+        if (this.dataStore.length === 0) {
+            return true;
+        }
+        return false;
+    }
 
 ###3.优先队列
 
