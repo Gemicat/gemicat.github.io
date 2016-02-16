@@ -7,7 +7,7 @@ tags: [Codility]
 description: none
 ---
 
-##PermMissingElem
+## PermMissingElem
 
 问题：Find the missing element in a given permutation.
 

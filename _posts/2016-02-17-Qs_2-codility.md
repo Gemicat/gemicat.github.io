@@ -7,7 +7,7 @@ tags: [Codility]
 description: none
 ---
 
-##笔试题
+## 笔试题
 
 1.检测字符串中字母是否被“+”包围.
 
