@@ -3,7 +3,7 @@ layout: post
 title: 栈
 date: 2015-11-13
 categories: blog
-tags: [数据结构与算法javascript描述]
+tags: [数据结构与算法]
 description: none
 ---
 
