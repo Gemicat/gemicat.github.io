@@ -7,7 +7,7 @@ tags: [javascript]
 description: none
 ---
 
-###1.工厂模式
+###运动框架
 
 [运动框架，进入另存为](https://raw.githubusercontent.com/Gemicat/gemicat.github.io/master/demo/Frame/move.js)
 
