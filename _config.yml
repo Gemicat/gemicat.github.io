@@ -27,8 +27,8 @@ zhihu_username: gemicat
 # use Github Flavored Markdown !important  
 # document: http://jekyllrb.com/docs/configuration/#kramdown  
 markdown: kramdown
-highlighter: pygments
-# highlighter: rouge
+# highlighter: pygments
+highlighter: rouge
 permalink: pretty
 paginate: 8
 exclude: ["less","node_modules","Gruntfile.js","package.json","README.md"]
