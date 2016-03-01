@@ -52,9 +52,7 @@ backbone中最基础的东西就是model，这个东西就像后端开发中数�
 
 ### 对象赋值的两种方法
 
-1. 直接定义，设置默认值
-
-code
+直接定义，设置默认值
 
     // 创建一个Man对象
     Man = Backbone.Model.extend({
@@ -71,9 +69,7 @@ code
     var man = new Man();
     alert(man.get('age'));
 
-2. 赋值时定义
-
-code
+赋值时定义
 
     // 创建一个Man对象
     Man = Backbone.Model.extend({
