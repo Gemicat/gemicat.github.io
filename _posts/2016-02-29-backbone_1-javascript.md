@@ -3,23 +3,23 @@ layout: post
 title: 初识backbone
 date: 2016-02-29
 categories: blog
-tags: [初识backbone]
+tags: [javascript]
 description: none
 ---
 
-## 认识backbone
+## 1.认识backbone
 
 backbone.js提供了一套web开发的框架，通过Models进行key-value绑定及custom事件处理，通过Collections提供一套丰富的API用于枚举功能通过Views来进行事件处理及与现有的Application通过RESTful JSON接口进行交互.它是基于jquery和underscore的一个js框架。
 
 通过backbone，你可以把你的数据当作Models，通过Models你可以创建数据，进行数据验证，销毁或者保存到服务器上。当界面上的操作引起model中属性的变化时，model会触发change的事件;那些用来显示model状态的views会接受到model触发change的消息，进而发出对应的响应，并且重新渲染新的数据到界面。在一个完整的backbone应用中，你不需要写那些胶水代码来从DOM中通过特殊的id来获取节点，或者手工的更新HTML页面，因为在model发生变化时，views会很简单的进行自我更新。
 
-## 通过helloworld来认识backbone
+## 2.通过helloworld来认识backbone
 
-## backbone中的model实例
+## 3.backbone中的model实例
 
 backbone中最基础的东西就是model，这个东西就像后端开发中数据库映射的model一样，也是数据对象模型。
 
-### 最简单的一个对象
+#### 3.1最简单的一个对象
 
     <!DOCTYPE html>
     <html>
@@ -50,7 +50,7 @@ backbone中最基础的东西就是model，这个东西就像后端开发中数�
     </script>
     </html>
 
-### 对象赋值的两种方法
+### 3.2对象赋值的两种方法
 
 直接定义，设置默认值
 
@@ -83,7 +83,7 @@ backbone中最基础的东西就是model，这个东西就像后端开发中数�
     man.set({name:'李四', age:28});
     alert(man.get('age'))
 
-### 对象中的方法
+### 3.3对象中的方法
 
     // 创建一个Man对象
     Man = Backbone.Model.extend({
@@ -103,7 +103,7 @@ backbone中最基础的东西就是model，这个东西就像后端开发中数�
     var man = new Man();
     alert(man.aboutMe());
 
-### 监听对象中属性的变化
+### 3.4监听对象中属性的变化
 
     // 创建一个Man对象
     Man = Backbone.Model.extend({
@@ -129,7 +129,7 @@ backbone中最基础的东西就是model，这个东西就像后端开发中数�
     // 设置name的值来触发change事件
     man.set({name:'gemicat'});
 
-### 为对象添加验证规则，以及错误提示
+### 3.5为对象添加验证规则，以及错误提示
 
     // 创建一个Man对象
     Man = Backbone.Model.extend({
@@ -165,3 +165,100 @@ backbone中最基础的东西就是model，这个东西就像后端开发中数�
     // 设置空 name，必须要加{validate:true}来强制使用错误检测
     man.set({name:''},{validate:true});
 
+## 4.backbone的collection实例
+
+collection是model对象的一个有序的集合
+
+### 4.1关于book和bookself的例子
+
+    Book = Backbone.Model.extend({
+        default : {
+            title : 'default'
+        },
+        initalize : function(){
+            // init事件
+        }
+    });
+
+    BookShelf = Backbone.Collection.extend({
+        model : Book
+    });
+
+    var book1 = new Book({title:'book1'});
+    var book2 = new Book({title:'book2'});
+    var book3 = new Book({title:'book3'});
+    // 添加图书，或者使用bookShelf.add(book1);
+    var bookShelf = new BookShelf([book1, book2, book3]);
+
+    bookShelf.each(function(book){
+        console.log(book.get('title'));
+    })
+
+### 4.2使用fetch从服务器端获取数据
+
+    bookShelf.fetch({
+        url :'/getbooks/', 
+        success : function(collection, res){
+            collection.each(function(book){
+                console.log(book.get('title'));
+            }),
+        error : function(){
+            console.log('error');
+        }
+    }})
+
+### 4.3reset方法
+
+这个方法是要喝fetch进行配合使用，collection在fetch到数据后，会调用reset方法。
+
+    bookShelf.bind('reset', showAllBooks);
+    showAllBooks = function(){
+        bookShelf.each(function(book){
+            // 操作
+        })
+    }
+
+> 绑定的步骤要在fetch之前进行
+
+## 5.backbone中的router实例
+
+router是路由，Backbone.Router承担了一部分控制器的工作，会把链接中的#标签当作是url路径，将特定的url或者锚点规则绑定到一个指定的方法。
+
+### 5.1一个简单的例子
+
+    var AppRouter = Backbone.Router.extend({
+        routes : {
+            "" : 'main',
+            "topic" : 'renderList',
+            "topic/:id" : 'renderDetail',
+            "*actions" : "defaultRoute"
+        },
+        main : function(){
+            console.log('应用入口方法');
+        },
+        renderList : function(){
+            console.log("渲染列表方法");
+        },
+        renderDetail : function(id){
+            console.log("渲染详情的方法为：" + id);
+        },
+        defaultRoute : function(actions){
+            console.log(actions);
+        }
+    });
+
+    var app_router = new AppRouter;
+    Backbone.history.start();
+
+通过调用Backbone.history.start()来初始化这个Router。
+传参的方式有两种，一种是用 ":" 来把#后对应位置作为参数，一种是"*"通配符
+
+## 6.backbone中的view实例
+
+Model和Collection都是用于数据管理和交互，视图（View）将这些数据渲染到页面。
+
+Backbone中的视图提供了一组处理DOM和渲染模型数据的方法。
+
+视图类提供的方法就是在Backbone.View的基础上进行扩展。
+
+### 6.1
