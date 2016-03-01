@@ -251,9 +251,9 @@ router是路由，Backbone.Router承担了一部分控制器的工作，会把�
     Backbone.history.start();
 
 通过调用Backbone.history.start()来初始化这个Router。
-传参的方式有两种，一种是用 ":" 来把#后对应位置作为参数，一种是"*"通配符
+传参的方式有两种，一种是用 ":" 来把#后对应位置作为参数，一种是"*"通配符。
 
-## 6.backbone中的view实例
+### 6.backbone中的view实例
 
 Model和Collection都是用于数据管理和交互，视图（View）将这些数据渲染到页面。
 
@@ -261,4 +261,68 @@ Backbone中的视图提供了一组处理DOM和渲染模型数据的方法。
 
 视图类提供的方法就是在Backbone.View的基础上进行扩展。
 
-### 6.1
+#### 6.1定义和创建视图
+
+    <div title="列表" style="color:red" id="list" class="listview"></div>  
+    <script type="text/javascript">  
+        var ListView = Backbone.View.extend({  
+            el : '#list'  
+        });  
+        var listview = new ListView();  
+    </script> 
+
+listView中的el属性为字符串形式的dom选择器，还可以动态生成dom。
+
+    <script type="text/javascript">  
+        var ListView = Backbone.View.extend({  
+            tagName : 'div',  
+            className : 'listview',  
+            id : 'list',  
+            attributes : {  
+                title : '列表',  
+                style : 'color:red'  
+            },  
+            render : function() {  
+                this.el.innerHTML = 'Hello World!';  
+                document.body.appendChild(this.el);  
+            }  
+        });  
+        var listview = new ListView(); 
+        //rander()方法将新标签添加到页面，不然只会保存在el中。 
+        listview.render();  
+    </script> 
+
+#### 9.2处理DOM事件
+
+    <p id="view">  
+        <input type="button" value="Create" id="create" />  
+        <input type="button" value="Read" id="read" />  
+        <input type="button" value="Update" id="update" />  
+        <input type="button" value="Delete" id="delete" />  
+    </p>  
+    <script type="text/javascript">  
+        var MyView = Backbone.View.extend({  
+            el : '#view',  
+            events : {  
+                'click #create' : 'createData',  
+                'click #read' : 'readData',  
+                'click #update' : 'updateData',  
+                'click #delete' : 'deleteData'  
+            },  
+            createData : function() {  
+                // todo  
+            },  
+            readData : function() {  
+                // todo  
+            },  
+            updateData : function() {  
+                // todo  
+            },  
+            deleteData : function() {  
+                // todo  
+            }  
+        });  
+        var view = new MyView();  
+    </script> 
+
+#### 9.3View中的模板
