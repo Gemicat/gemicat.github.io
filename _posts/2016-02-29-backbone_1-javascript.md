@@ -54,6 +54,8 @@ backbone中最基础的东西就是model，这个东西就像后端开发中数�
 
 1. 直接定义，设置默认值
 
+code
+
     // 创建一个Man对象
     Man = Backbone.Model.extend({
         // 构造函数，默认调用alert弹出 “hi”
@@ -70,6 +72,8 @@ backbone中最基础的东西就是model，这个东西就像后端开发中数�
     alert(man.get('age'));
 
 2. 赋值时定义
+
+code
 
     // 创建一个Man对象
     Man = Backbone.Model.extend({
