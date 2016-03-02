@@ -292,7 +292,7 @@ listView中的el属性为字符串形式的dom选择器，还可以动态生成d
         listview.render();  
     </script> 
 
-#### 9.2处理DOM事件
+#### 6.2处理DOM事件
 
     <p id="view">  
         <input type="button" value="Create" id="create" />  
@@ -325,4 +325,4 @@ listView中的el属性为字符串形式的dom选择器，还可以动态生成d
         var view = new MyView();  
     </script> 
 
-#### 9.3View中的模板
+#### 6.3View中的模板

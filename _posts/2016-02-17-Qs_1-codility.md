@@ -1,13 +1,13 @@
 ---
 layout: post
-title: 排序
+title: 刷题
 date: 2016-02-17
 categories: blog
 tags: [Codility]
 description: none
 ---
 
-## PermMissingElem
+### PermMissingElem
 
 问题：Find the missing element in a given permutation.
 

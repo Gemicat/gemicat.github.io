@@ -4,8 +4,43 @@ layout: default
 
 <!-- Post Header -->
 <style type="text/css">
-    h1,h2,h3,h4,h5,h6{
-        font-weight: 500 !important;
+    /*去掉前面的锚点*/
+    .anchorjs-link{
+        display: none;
+    }
+    /*大标题样式*/
+    h3 {
+        background: #2B6695 !important;
+        padding: 5px;
+        color: #fff;
+        box-shadow: 0 0 0 1px #5F5A4B, 1px 1px 6px 1px rgba(10, 10, 0, 0.5);
+        font-family: "微软雅黑" , "宋体" , "黑体" ,Arial;
+        font-size: 17px;
+        font-weight: bold;
+        line-height: 25px;
+        margin: 15px 0 !important;
+        text-shadow: 2px 2px 3px #222222;
+    }
+    /*小标题样式*/
+    h4{
+        background-color: #F8F8EE;
+        border: 1px dashed silver;
+        padding: 5px;
+        font-size: 16px;
+        color: black;
+        text-shadow: 0 0 1px #CCC;
+    }
+    /*特殊备注*/
+    blockquote {
+        padding: 1px 10px !important;
+        border-left: 5px solid #eee;
+        color: #800000 !important;
+        font-style: normal !important;
+    }
+    /*代码区注释样式*/
+    .hljs-comment, .diff .hljs-header {
+        color: #008000 !important;
+        font-style: normal !important;
     }
     header.intro-header{
         background-image: url('{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}')
@@ -19,9 +54,11 @@ layout: default
         color: #fff;
         text-decoration: none;
     }
+    /*段落之间的距离*/
     p{margin:10px 0 !important;}
+    /*正文字体设置*/
     #container-body{
-        color: balck;
+        color: black;
         font: 0.875em/1.5em "微软雅黑" , "PTSans" , "Arial" ,sans-serif;
         font-size: 14px;
         font-family: verdana,Arial,Helvetica,sans-serif;
