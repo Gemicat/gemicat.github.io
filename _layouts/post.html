@@ -4,6 +4,9 @@ layout: default
 
 <!-- Post Header -->
 <style type="text/css">
+    h1,h2,h3,h4,h5,h6{
+        font-weight: 500 !important;
+    }
     header.intro-header{
         background-image: url('{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}')
     }
@@ -16,10 +19,16 @@ layout: default
         color: #fff;
         text-decoration: none;
     }
-    p{margin:15px 0 !important;}
+    p{margin:10px 0 !important;}
+    #container-body{
+        color: balck;
+        font: 0.875em/1.5em "微软雅黑" , "PTSans" , "Arial" ,sans-serif;
+        font-size: 14px;
+        font-family: verdana,Arial,Helvetica,sans-serif;
+    }
 </style>
 <header class="intro-header" >
-    <div class="container">
+    <div class="container" id="container-body">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <div class="post-heading">
