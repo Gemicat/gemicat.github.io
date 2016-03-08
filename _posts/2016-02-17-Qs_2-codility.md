@@ -57,6 +57,9 @@ description: none
 
 3.小熊分苹果
 
+N（1\<N\<9）只熊分一堆苹果，第一只熊（叫小东鄙视）把苹果平均分成N分，刚好多出一个，扔掉多出的那个并取走一份，后面每只熊以此类推。
+问苹果最少多少个。
+
     function apple(n) {
         var i = 1, final = 1;
         var temp = n;
