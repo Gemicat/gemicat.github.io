@@ -55,7 +55,7 @@ description: none
 
 3.XHR脚本注入
 
-使用XMLHttpRequest()对象来请求所需要加载的脚本，请求成功后动态添加到页面。最蛀牙的限制是不能跨域，只能在同一个域中。正因为这个原因，大型网站通常不用XHR脚本注入技术。
+使用XMLHttpRequest()对象来请求所需要加载的脚本，请求成功后动态添加到页面。最主要的限制是不能跨域，只能在同一个域中。正因为这个原因，大型网站通常不用XHR脚本注入技术。
 
 ### 2.数据访问
 
@@ -78,6 +78,126 @@ description: none
 ### 3.DOM编程
 
 dom操作的代价非常昂贵，通常是一个网页的性能瓶颈。
+
+1.在页面大量添加或修改DOM节点时，最好将所有的节点保存起来，最后再添加到页面上。
+
+>innerHTML和DOM操作的性能差别不大，区别是innerHTML在旧版本浏览器效率高，而DOM操作在新版浏览器效率高。具体选择哪一个要根据你所在团队的编码风格和你的编码习惯来看。
+
+2.如果同一个DOM属性或方法被访问一次以上，最好使用一个局部变量来缓存次DOM成员。
+
+3.在获取元素节点时，nextSibling和childNode在不同浏览器上运行时间基本相等，但是，在老的IE中，nextSibling要快的多。
+
+4.在新版本浏览器中，使用querySelectorAll()和firstElementChild()的效率更加高。
+
+    // 将class为warning和notice的div选择出来
+    document.querySelectorAll('div.warning,div.notice');
+
+5.在IE中，大量使用:hover这个伪选择器会降低反应速度。
+
+6.使用时间委托（事件逐层冒泡总能被父元素捕获）。
+
+### 4.算法和流程控制
+
+代码整体结构是执行速度的决定因素之一。代码量少不一定运行速度快，代码量多也不一定运行速度慢。性能损失与代码组织方式和具体问题解决办法直接相关。
+
+#### 4.1循环
+
+for,while,do-while的性能特性相似，但是for-in的效率较慢。
+
+1.要尽可能减少迭代的次数，使用达夫循环。
+
+    // 每次循环中最多8次调用process()函数，循环次数为元素综合/8.
+    // startAt存放余数,指出第一次循环的次数。
+    var interations = Math.floor(items.length / 8);
+    var startAt = items.length % 8;
+    var i = 0;
+    do {
+        switch (startAt) {
+            case 0:
+                process(items[i++]);
+            case 7:
+                process(items[i++]);
+            case 6:
+                process(items[i++]);
+            case 5:
+                process(items[i++]);
+            case 4:
+                process(items[i++]);
+            case 3:
+                process(items[i++]);
+            case 2:
+                process(items[i++]);
+            case 1:
+                process(items[i++]);
+        }
+        startAt = 0;
+    } while (--interations);
+
+下面是优化版本，将余数处理和主循环分开：
+
+    var i = items.length % 8;
+    while (i) {
+        process(items[i--]);
+    }
+    i = Math.floor(items.length / 8);
+    while (i) {
+        process(items[i--]);
+        process(items[i--]);
+        process(items[i--]);
+        process(items[i--]);
+        process(items[i--]);
+        process(items[i--]);
+        process(items[i--]);
+        process(items[i--]);
+    }
+
+2.基于函数的迭代——forEach()，虽然比较便利，但是比起基于循环的迭代还是要慢一些。
+
+#### 4.2递归
+
+1.浏览器的调用栈尺寸限制了递归算法在JavaScript中的应用：栈溢出错误导致其他代码也不能执行。
+
+2.运行的代码总量越大，使用这些策略带来的提升就越明显。
+
+### 5.字符串和正则表达式
+
+#### 5.1字符串连接
+
+1.在拼接字符串时，使用str = str + 'one' + 'two'，如果在一个循环中，基本字符串位于最左端，就可以避免多次复制一个越来越大的基本字符串。
+
+2.使用数组辅助生成字符串：
+
+    while (appends--) {
+        strs[strs.length] = str;
+    }
+    newStr = strs.join('');
+
+3.大多情况下，concat比 +和+= 要慢。
+
+#### 5.2正则表达式优化
+
+1.正则表达式的工作原理
+
+第一步：编译
+
+当创建一个正则表达式对象之后，浏览器检查模板有没有错误，然后将它转换成一个本机代码用于匹配工作。
+
+第二步：设置起始位置
+
+确定目标字符串中开始搜索的位置，但当匹配失败时，此位置将位于最后一次尝试起始位置退后的一个字符的位置上。
+
+第三步：匹配每个正则表达式的子元
+
+正则表达式一旦找好起始位置，将一个一个地扫描目标文本和正则表达式模板。当一个特定子元匹配失败时，正则表达式将试图回溯到扫描之前的位置上，然后进入正则表达式其他可能的路径上。
+
+第四步：匹配成功或失败
+
+2.理解回溯
+
+[理解回溯(来自博客园)](http://www.cnblogs.com/aaronjs/archive/2012/06/30/2570805.html)
+
+>end（2016-04-05） 156/350
+
 
 
 
