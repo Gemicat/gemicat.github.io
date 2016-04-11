@@ -3,7 +3,8 @@ layout: default
 ---
 
 <!-- Page Header -->
-<header class="intro-header" style="background-image: url('{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}')">
+<!--<header class="intro-header" style="background-image: url('{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}')">-->
+<header class="intro-header" style="background: #ccc; position: relative;" id="intro-head">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
@@ -16,7 +17,29 @@ layout: default
         </div>
     </div>
 </header>
-
+<script type="text/javascript">
+    window.onload = function (){
+        var intro_head = document.getElementById('intro-head');
+        var intro_h = intro_head.offsetHeight;
+        var intro_w = intro_head.offsetWidth;
+        var createBubble = function (){
+            var r = Math.floor(Math.random()*(254 - 0));
+            var g = Math.floor(Math.random()*(254 - 0));
+            var b = Math.floor(Math.random()*(254 - 0));
+            var l = Math.floor(Math.random()*(intro_h - 0));
+            var w = Math.floor(Math.random()*(intro_w - 0));
+            var num = Math.floor(Math.random()*(25 - 5));
+            var oDiv = document.createElement('div');
+            oDiv.style.backgroundColor = 'rgb('+r+','+g+','+b+')';
+            oDiv.style.position = 'absolute';
+            oDiv.style.left = w + 'px';
+            oDiv.style.top = l + 'px';
+            oDiv.style.width = num + 'px';
+            oDiv.style.heigth = num + 'px';
+            oDiv.style..borderRadius = num + 'px';
+        }
+    }
+</script>
 <link rel="stylesheet" href="/css/backtop.css">  <!-- Back Top -->
 <script type="text/javascript" src="/js/backtop.js"></script>  <!-- Back Top -->
 
