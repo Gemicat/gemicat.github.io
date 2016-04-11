@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 高性能javascript【连载中】
+title: 高性能javascript
 date: 2016-03-08
 categories: blog
 tags: [javascript]
