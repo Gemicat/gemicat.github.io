@@ -28,14 +28,14 @@ layout: default
             var b = Math.floor(Math.random()*(254 - 0));
             var l = Math.floor(Math.random()*(intro_h - 0));
             var w = Math.floor(Math.random()*(intro_w - 0));
-            var num = Math.floor(Math.random()*(25 - 5));
+            var num = Math.floor(Math.random()*(50 - 10));
             var oDiv = document.createElement('div');
             oDiv.style.backgroundColor = 'rgb('+r+','+g+','+b+')';
             oDiv.style.position = 'absolute';
             oDiv.style.left = w + 'px';
             oDiv.style.top = l + 'px';
             oDiv.style.width = num + 'px';
-            oDiv.style.heigth = num + 'px';
+            oDiv.style.height = num + 'px';
             oDiv.style.borderRadius = num + 'px';
             intro_head.appendChild(oDiv);
         }
