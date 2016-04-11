@@ -24,10 +24,10 @@ layout: default
         var intro_w = intro_head.offsetWidth;
         var flag = 0;
         var timer = null;
-        clearTimeout(timer);
+        clearInterval(timer);
         var createBubble = function (){
             if(flag > 20){
-                clearTimeout(timer);
+                clearInterval(timer);
             }
             var r = Math.floor(Math.random()*(254 - 0));
             var g = Math.floor(Math.random()*(254 - 0));
@@ -46,7 +46,7 @@ layout: default
             intro_head.appendChild(oDiv);
             flag ++;
         }
-        var timer = setTimeout(createBubble, 300);
+        var timer = setInterval(createBubble, 300);
     }
 </script>
 <link rel="stylesheet" href="/css/backtop.css">  <!-- Back Top -->
