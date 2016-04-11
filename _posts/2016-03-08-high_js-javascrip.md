@@ -204,12 +204,44 @@ for,while,do-while的性能特性相似，但是for-in的效率较慢。
 
 总的来说，大多数浏览器有一个单独的处理进程，它由两个任务所共享：JavaScript任务和用户界面更新任务。每个时刻只有其中的一个操作得以执行，也就是说当JavaScript代码运行时用户界面不能对输入产生反应，反之亦然。或者说，当JavaScript运行时，用户界面就被‘锁定’了。
 
+1.JavaScript运行时间不应该超过100毫秒，过长的运行时间导致UI更新出现可察觉的延迟，从而对整体用户体验产生负面影响。
 
+2.定时器可用于安排代码推迟执行，它使得你可以将长运行脚本分解成一系列较小的任务。
 
+    /**
+     - 封装的使用定时器运行程序
+     - @param  {items}  事件数组
+     - @param  {process}  事件
+     - @param  {callback}   回调方法
+     */
+    function processArray(items, process, callback) {
+        var todo = items.concat();
+        setTimeout(function() {
+            process(todo.shift());
+            if (todo.length > 0) {
+                setTimeout(arguments.callee, 25);
+            } else {
+                callback(items);
+            }
+        }, 25);
+    }
 
+    //调用
+    var items = [123, 789, 323, 232, 778, 654, 543];
+    function outputVal(val) {
+        console.log(val);
+    }
+    processArray(items, outputVal, function() {
+        console.log('Done!');
+    });
 
+3.网页应用越来越复杂，积极主动地管理UI现成就越显得重要。没有什么JavaScript代码可以重要到允许影响到用户体验的程度。
 
->end（2016-04-05） 156/350
+### 7.Ajax异步JavaScript和XML
+
+Ajax是高性能JavaScript的基石，它可以通过延迟下载大量资源使页面加载更快。
+
+>在选在ajax传输的数据格式时，最好选用较轻便的json。
 
 
 
