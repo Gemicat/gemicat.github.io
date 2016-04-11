@@ -22,13 +22,19 @@ layout: default
         var intro_head = document.getElementById('intro-head');
         var intro_h = intro_head.offsetHeight;
         var intro_w = intro_head.offsetWidth;
+        var flag = 0;
+        var timer = null;
+        clearTimeout(timer);
         var createBubble = function (){
+            if(flag > 20){
+                clearTimeout(timer);
+            }
             var r = Math.floor(Math.random()*(254 - 0));
             var g = Math.floor(Math.random()*(254 - 0));
             var b = Math.floor(Math.random()*(254 - 0));
             var l = Math.floor(Math.random()*(intro_h - 0));
             var w = Math.floor(Math.random()*(intro_w - 0));
-            var num = Math.floor(Math.random()*(50 - 10));
+            var num = Math.floor(Math.random()*(50 - 20));
             var oDiv = document.createElement('div');
             oDiv.style.backgroundColor = 'rgb('+r+','+g+','+b+')';
             oDiv.style.position = 'absolute';
@@ -38,8 +44,9 @@ layout: default
             oDiv.style.height = num + 'px';
             oDiv.style.borderRadius = num + 'px';
             intro_head.appendChild(oDiv);
+            flag ++;
         }
-        setInterval(createBubble, 300);
+        var timer = setTimeout(createBubble, 300);
     }
 </script>
 <link rel="stylesheet" href="/css/backtop.css">  <!-- Back Top -->
