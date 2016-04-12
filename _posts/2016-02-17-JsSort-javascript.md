@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 排序
+title: 排序——JavaScript基础算法
 date: 2016-02-17
 categories: blog
 tags: [数据结构与算法]
