@@ -32,7 +32,7 @@ window.onload = function() {
         10 : [242, 76, 129],
         11 : [109, 50, 131],
     }
-    var length = count(color)++;
+    var length = ++(count(color));
     var num = Math.floor(Math.random() * (length - 0));
     intro_head.style.backgroundColor = 'rgb(' + color[num][0] + ',' + color[num][1] + ',' + color[num][2] + ')';
 
