@@ -1,4 +1,6 @@
---- layout: default ---
+---
+layout: default 
+---
 <!-- Page Header -->
 <!--<header class="intro-header" style="background-image: url('{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}')">-->
 <header class="intro-header" style="background-color: rgb(37,168,138);" id="intro-head">
@@ -33,21 +35,21 @@ window.onload = function() {
     var length = count(color)++;
     var num = Math.floor(Math.random() * (length - 0));
     intro_head.style.backgroundColor = 'rgb(' + color[num][0] + ',' + color[num][1] + ',' + color[num][2] + ')';
-    
-}
-function count(o){
-    var t = typeof o;
-    if(t == 'string'){
-            return o.length;
-    }else if(t == 'object'){
-            var n = 0;
-            for(var i in o){
-                    n++;
-            }
-            return n;
+
+    function count(o){
+        var t = typeof o;
+        if(t == 'string'){
+                return o.length;
+        }else if(t == 'object'){
+                var n = 0;
+                for(var i in o){
+                        n++;
+                }
+                return n;
+        }
+        return false;
     }
-    return false;
-}; 
+}
 </script>
 <link rel="stylesheet" href="/css/backtop.css">
 <!-- Back Top -->
