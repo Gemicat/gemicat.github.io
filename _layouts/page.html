@@ -1,10 +1,7 @@
----
-layout: default
----
-
+--- layout: default ---
 <!-- Page Header -->
 <!--<header class="intro-header" style="background-image: url('{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}')">-->
-<header class="intro-header" style="background: #ccc; position: relative; overflow: hidden;" id="intro-head">
+<header class="intro-header" style="background-color: rgb(37,168,138);" id="intro-head">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
@@ -18,51 +15,53 @@ layout: default
     </div>
 </header>
 <script type="text/javascript">
-    window.onload = function (){
-        var intro_head = document.getElementById('intro-head');
-        var intro_h = intro_head.offsetHeight;
-        var intro_w = intro_head.offsetWidth;
-        var flag = 0;
-        var timer = null;
-        clearInterval(timer);
-        var createBubble = function (){
-            if(flag > 20){
-                clearInterval(timer);
-            }
-            var r = Math.floor(Math.random()*(254 - 0));
-            var g = Math.floor(Math.random()*(254 - 0));
-            var b = Math.floor(Math.random()*(254 - 0));
-            var l = Math.floor(Math.random()*(intro_h - 0));
-            var w = Math.floor(Math.random()*(intro_w - 0));
-            var num = Math.floor(Math.random()*(50 - 20));
-            var oDiv = document.createElement('div');
-            oDiv.style.backgroundColor = 'rgb('+r+','+g+','+b+')';
-            oDiv.style.position = 'absolute';
-            oDiv.style.left = w + 'px';
-            oDiv.style.top = l + 'px';
-            oDiv.style.width = num + 'px';
-            oDiv.style.height = num + 'px';
-            oDiv.style.borderRadius = num + 'px';
-            intro_head.appendChild(oDiv);
-            flag ++;
-        }
-        var timer = setInterval(createBubble, 300);
+window.onload = function() {
+    var intro_head = document.getElementById('intro-head');
+    var color = {
+        0 : [76, 76, 76],//黑色
+        1 : [20, 84, 109], //blue
+        3 : [57, 86, 146], //facebook
+        4 : [32, 140, 91], //green
+        5 : [229, 129, 114], //orange
+        6 : [239, 104, 85], //red
+        7 : [17, 181, 174], //semantic
+        8 : [71, 165, 237], //twitter
+        9 : [5, 102, 197], //zhihu
+        10 : [242, 76, 129],
+        11 : [109, 50, 131],
     }
+    var length = count(color)++;
+    var num = Math.floor(Math.random() * (length - 0));
+    intro_head.style.backgroundColor = 'rgb(' + color[num][0] + ',' + color[num][1] + ',' + color[num][2] + ')';
+    
+}
+function count(o){
+    var t = typeof o;
+    if(t == 'string'){
+            return o.length;
+    }else if(t == 'object'){
+            var n = 0;
+            for(var i in o){
+                    n++;
+            }
+            return n;
+    }
+    return false;
+}; 
 </script>
-<link rel="stylesheet" href="/css/backtop.css">  <!-- Back Top -->
-<script type="text/javascript" src="/js/backtop.js"></script>  <!-- Back Top -->
-
+<link rel="stylesheet" href="/css/backtop.css">
+<!-- Back Top -->
+<script type="text/javascript" src="/js/backtop.js"></script>
+<!-- Back Top -->
 <div id="back-top">
-  <a href="#top" title="回到顶部"></a>
+    <a href="#top" title="回到顶部"></a>
 </div>
-
 <!-- Main Content -->
 <div class="container">
-	<div class="row">
-		<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-			{{ content }}
-		</div>
-	</div>
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            {{ content }}
+        </div>
+    </div>
 </div>
-
 <hr>
