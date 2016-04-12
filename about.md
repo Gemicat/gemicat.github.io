@@ -13,8 +13,6 @@ header-img: "img/green.jpg"
     </p>
 </center>
 
-<center>Noting Like Me！</center>
-
 
 
 
