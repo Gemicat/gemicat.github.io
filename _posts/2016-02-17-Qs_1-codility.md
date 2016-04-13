@@ -9,9 +9,9 @@ description: none
 
 ### PermMissingElem
 
-#### 问题：Find the missing element in a given permutation.
+Find the missing element in a given permutation.
 
-1.PHP部分
+> PHP部分
 
     //时间复杂度O(n),空间复杂度O(1)
     //通过率100%
@@ -27,7 +27,7 @@ description: none
         return ++$len;
     }
 
-2.JS部分
+> JS部分
 
     // 通过率50%，为什么？
 
@@ -45,7 +45,9 @@ description: none
 
 ### 1.Two Sum
 
-#### Given an array of integers, return indices of the two numbers such that they add up to a specific target.You may assume that each input would have exactly one solution.
+Given an array of integers, return indices of the two numbers such that they add up to a specific target.
+
+You may assume that each input would have exactly one solution.
 
 __Example__
 
@@ -57,17 +59,17 @@ __Example__
 > JavaScript
 
     /**
-     - @param {number[]} nums
-     - @param {number} target
-     - @return {number[]}
-     */
+    - @param {number[]} nums
+    - @param {number} target
+    - @return {number[]}
+    */
     var twoSum = function(nums, target) {
         var length = nums.length;
-        var i,j;
-        for(i = 0;i<(length-1);i++){
-            for(j=(i+1);j<length;j++){
-                if(nums[i] + nums[j] == target){
-                    return [i,j];
+        var i, j;
+        for (i = 0; i < (length - 1); i++) {
+            for (j = (i + 1); j < length; j++) {
+                if (nums[i] + nums[j] == target) {
+                    return [i, j];
                 }
             }
         }
