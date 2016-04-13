@@ -1,15 +1,13 @@
 ---
 layout: post
-title: 笔试题
+title: 2015算法笔试题
 date: 2016-02-17
 categories: blog
-tags: [Codility]
+tags: [LeetCode]
 description: none
 ---
 
-### 笔试题
-
-1.检测字符串中字母是否被“+”包围.
+### 1.检测字符串中字母是否被“+”包围.
 
     function testSymbols(str) {
         var arr = str.split("");
@@ -30,7 +28,7 @@ description: none
         return true;
     }
 
-2.给定一个数组，问数组中最大的数能否用除此数字外任意个数组中的元素相加而成.
+### 2.给定一个数组，问数组中最大的数能否用除此数字外任意个数组中的元素相加而成.
 
     var str = "++d+-o+u+b--a++-";
     console.log(testSymbols(str));
@@ -55,7 +53,7 @@ description: none
         return false;
     }
 
-3.小熊分苹果
+### 3.小熊分苹果
 
 N（1\<N\<9）只熊分一堆苹果，第一只熊（叫小东鄙视）把苹果平均分成N分，刚好多出一个，扔掉多出的那个并取走一份，后面每只熊以此类推。
 问苹果最少多少个。
@@ -83,7 +81,7 @@ N（1\<N\<9）只熊分一堆苹果，第一只熊（叫小东鄙视）把苹果
     }
     console.log(apple(5));
 
-4.年终奖问题
+### 4.年终奖问题
 
     function findMax(x, y, sum) {
         sum += arr[x][y];
