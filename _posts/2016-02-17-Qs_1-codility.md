@@ -3,13 +3,13 @@ layout: post
 title: 刷题
 date: 2016-02-17
 categories: blog
-tags: [Codility]
+tags: [LeetCode]
 description: none
 ---
 
 ### PermMissingElem
 
-问题：Find the missing element in a given permutation.
+#### 问题：Find the missing element in a given permutation.
 
 1.PHP部分
 
@@ -42,3 +42,34 @@ description: none
         }
         return ++len;
     }
+
+### 1.Two Sum
+
+#### Given an array of integers, return indices of the two numbers such that they add up to a specific target.You may assume that each input would have exactly one solution.
+
+__Example__
+
+    Given nums = [2, 7, 11, 15], target = 9,
+
+    Because nums[0] + nums[1] = 2 + 7 = 9,
+    return [0, 1].
+
+> JavaScript
+
+    /**
+     - @param {number[]} nums
+     - @param {number} target
+     - @return {number[]}
+     */
+    var twoSum = function(nums, target) {
+        var length = nums.length;
+        var i,j;
+        for(i = 0;i<(length-1);i++){
+            for(j=(i+1);j<length;j++){
+                if(nums[i] + nums[j] == target){
+                    return [i,j];
+                }
+            }
+        }
+        return false;
+    };
