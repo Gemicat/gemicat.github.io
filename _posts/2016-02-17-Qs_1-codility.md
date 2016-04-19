@@ -75,3 +75,74 @@ __Example__
         }
         return false;
     };
+
+### 2.ZigZag Conversion
+
+The string `"PAYPALISHIRING"` is written in a zigzag pattern on a given number of rows like this: (you may want to display this pattern in a fixed font for better legibility)
+
+    P   A   H   N
+    A P L S I I G
+    Y   I   R
+
+And then read line by line: `"PAHNAPLSIIGYIR"`
+
+Write the code that will take a string and make this conversion given a number of rows:
+
+    string convert(string text, int nRows); 
+
+convert(`"PAYPALISHIRING"`, 3) should return `"PAHNAPLSIIGYIR"`.
+
+> JavaScript
+
+    /**
+     - @param {string} s
+     - @param {number} numRows
+     - @return {string}
+     */
+    var convert = function(s, numRows) {
+        if (s.length === 0 || numRows <= 1 || s.length <= numRows) {
+            return s;
+        }
+        var flag = 2 * (numRows - 1),
+            length = s.length,
+            ret = '',
+            rowId = 1,
+            index,
+            dist;
+
+        // 第一层字符串
+        for (var i = 0; i < length; i = i + flag) {
+            ret += s[i]
+        }
+
+        // 中间层字符串输出
+        while (rowId < numRows - 1) {
+            index = rowId;
+            //每一层的开头
+            ret = ret + s[index];
+            while (1) {
+                dist = flag - (index % (numRows - 1)) * 2;
+                index = index + dist;
+                if (index < length) {
+                    ret = ret + s[index];
+                } else {
+                    break;
+                }
+                dist = 2 * (numRows - 1 - (index % (numRows - 1)));
+                index = index + dist;
+                if (index < length) {
+                    ret = ret + s[index];
+                } else {
+                    break;
+                }
+            }
+            rowId++;
+        }
+
+        // 最底层字符串
+        for (var i = rowId; i < length; i = i + flag) {
+            ret = ret + s[i];
+        }
+        return ret;
+    };
+
