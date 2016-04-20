@@ -146,3 +146,30 @@ convert(`"PAYPALISHIRING"`, 3) should return `"PAHNAPLSIIGYIR"`.
         return ret;
     };
 
+### 3.Reverse Integer
+
+Reverse digits of an integer.
+
+    Example1: x = 123, return 321
+    Example2: x = -123, return -321
+
+> JavaScript
+
+    /**
+     - @param {number} x
+     - @return {number}
+     */
+    var reverse = function(x) {
+        var result = 0,
+            flag = 1;
+        if (x < 0) {
+            flag = -1;
+        }
+        x = Math.abs(x);
+        x = (x.toString()).split('').reverse();
+        result = +(x.join(''));
+        if (result > 2147483647 || result < -2147483648) {
+            return 0;
+        }
+        return flag * result;
+    };
