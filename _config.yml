@@ -6,7 +6,7 @@
 title: Stack
 subtitle: 小钢炮_
 description: 该用户没有什么想说的
-author: Gemicat
+author: GemiCat
 language: zh-Hans
 timezone:
 
@@ -46,6 +46,7 @@ highlight:
 # Category & Tag
 default_category: uncategorized
 category_map:
+  Javascript: Javascript
 tag_map:
 
 # Date / Time format
@@ -64,6 +65,14 @@ pagination_dir: page
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
 theme: next
+
+# 搜索插件
+search:
+  path: search.xml
+  field: post
+
+#多说
+duoshuo_shortname: gemicat
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
