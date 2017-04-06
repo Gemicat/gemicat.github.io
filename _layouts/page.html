@@ -1,0 +1,71 @@
+---
+layout: default 
+---
+<!-- Page Header -->
+<!--<header class="intro-header" style="background-image: url('{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}')">-->
+<!-- <header class="intro-header" style="background-color: rgb(37,168,138);" id="intro-head"> -->
+<header class="intro-header" style="background-color: rgb(37,168,138);" id="intro-head">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="site-heading">
+                    <h1>{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</h1>
+                    <hr class="small">
+                    <span class="subheading">{{ page.description }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<script type="text/javascript">
+// window.onload = function() {
+    var intro_head = document.getElementById('intro-head');
+    var color = {
+        0 : [76, 76, 76],//黑色
+        1 : [20, 84, 109], //blue
+        3 : [57, 86, 146], //facebook
+        4 : [32, 140, 91], //green
+        5 : [229, 129, 114], //orange
+        6 : [239, 104, 85], //red
+        7 : [17, 181, 174], //semantic
+        8 : [71, 165, 237], //twitter
+        9 : [5, 102, 197], //zhihu
+        10 : [242, 76, 129],
+        11 : [109, 50, 131],
+    }
+    var length = count(color);
+    length = length + 1;
+    var num = Math.floor(Math.random() * (length - 0));
+    intro_head.style.backgroundColor = 'rgb(' + color[num][0] + ',' + color[num][1] + ',' + color[num][2] + ')';
+
+    function count(o){
+        var t = typeof o;
+        if(t == 'string'){
+                return o.length;
+        }else if(t == 'object'){
+                var n = 0;
+                for(var i in o){
+                        n++;
+                }
+                return n;
+        }
+        return false;
+    }
+// }
+</script>
+<link rel="stylesheet" href="/css/backtop.css">
+<!-- Back Top -->
+<script type="text/javascript" src="/js/backtop.js"></script>
+<!-- Back Top -->
+<div id="back-top">
+    <a href="#top" title="回到顶部"></a>
+</div>
+<!-- Main Content -->
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            {{ content }}
+        </div>
+    </div>
+</div>
+<hr>

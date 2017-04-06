@@ -1,0 +1,196 @@
+@charset "UTF-8";
+body {
+  background: #f8f8f8; }
+
+/*内容列表*/
+.service_content {
+  min-height: 50px;
+  position: relative;
+  padding-bottom: 50px; }
+  .service_content .service_aside {
+    width: 881px;
+    float: left;
+    margin-top: 0; }
+    .service_content .service_aside .service_title {
+      margin: 0;
+      font-size: 24px;
+      color: #333333;
+      height: 128px;
+      line-height: 118px;
+      font-weight: normal; }
+    .service_content .service_aside .service_list {
+      margin: 0;
+      padding: 0; }
+      .service_content .service_aside .service_list li {
+        display: block;
+        height: 241px;
+        background: #ffffff;
+        margin-bottom: 25px; }
+        .service_content .service_aside .service_list li .service_pic {
+          width: 331px;
+          height: 241px;
+          float: left; }
+        .service_content .service_aside .service_list li .service_list_content {
+          float: left;
+          width: 517px;
+          height: 241px;
+          margin-left: 33px;
+          position: relative; }
+          .service_content .service_aside .service_list li .service_list_content h2 {
+            margin: 0;
+            float: left;
+            width: 100%;
+            margin-top: 20px; }
+            .service_content .service_aside .service_list li .service_list_content h2 a {
+              font-size: 22px;
+              font-weight: normal;
+              text-decoration: none;
+              color: #7e6bb5; }
+          .service_content .service_aside .service_list li .service_list_content div {
+            width: 463px;
+            height: 88px;
+            float: left;
+            margin-top: 15px;
+            font-size: 14px;
+            color: #333333;
+            overflow: hidden;
+            text-overflow: ellipsis; }
+            .service_content .service_aside .service_list li .service_list_content div p {
+              margin: 0;
+              line-height: 22px; }
+          .service_content .service_aside .service_list li .service_list_content .service_list_more {
+            text-decoration: none;
+            font-size: 16px;
+            padding: 8px 38px;
+            border-radius: 5px;
+            background: #7e6bb5;
+            color: #ffffff;
+            position: absolute;
+            left: 0px;
+            bottom: 30px; }
+  .service_content .service_right {
+    width: 139px;
+    min-height: 50px;
+    position: absolute;
+    top: 127px;
+    left: 50%;
+    margin-left: 390px; }
+    .service_content .service_right ul {
+      display: block;
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      padding-bottom: 15px;
+      border-bottom: 1px solid #a3a3a3; }
+      .service_content .service_right ul li {
+        width: 100%;
+        display: block;
+        list-style: none;
+        margin: 0;
+        height: 21px;
+        font-size: 15px;
+        line-height: 20px;
+        color: #777777;
+        margin-bottom: 12px; }
+        .service_content .service_right ul li i {
+          width: 21px;
+          height: 21px;
+          display: block;
+          background: url("../img/service_list_icon.png");
+          background-size: cover;
+          /*behavior: url("./css/backgroundsize.min.htc");*/
+          background: url("../img/ie-service_list_icon.png") \0;
+          margin-right: 15px;
+          float: left; }
+          .service_content .service_right ul li i img {
+            margin-top: 0; }
+    .service_content .service_right .service_addr {
+      width: 100%;
+      margin: 0px;
+      font-size: 14px;
+      color: #777777;
+      line-height: 30px;
+      padding: 22px 0;
+      border-bottom: 1px solid #a3a3a3;
+      margin-top: 2px; }
+      .service_content .service_right .service_addr .service_addr_intro {
+        color: #777777;
+        font-weight: normal;
+        line-height: 20px;
+        display: block;
+        margin-bottom: -17px; }
+      .service_content .service_right .service_addr span {
+        color: #7e6bb5;
+        font-weight: bold; }
+    .service_content .service_right img {
+      width: 138px;
+      margin-top: 30px; }
+
+@media (min-width: 770px) and (max-width: 1125px) {
+  .service_right {
+    position: absolute !important;
+    top: 157px !important; } }
+/*移动端*/
+@media (max-width: 770px) {
+  .service_content {
+    width: 100% !important;
+    padding-bottom: 0; }
+    .service_content .service_aside {
+      width: 100%;
+      margin-top: 0; }
+      .service_content .service_aside .service_title {
+        display: none; }
+      .service_content .service_aside .service_list {
+        margin: 0;
+        padding: 0; }
+        .service_content .service_aside .service_list li {
+          list-style: none;
+          padding: 0px 38px;
+          padding-bottom: 115px;
+          position: relative;
+          overflow: hidden;
+          height: auto;
+          margin-bottom: 0; }
+          .service_content .service_aside .service_list li:nth-child(odd) {
+            background: #eeeeee; }
+          .service_content .service_aside .service_list li:nth-child(even) {
+            background: #f8f8f8; }
+          .service_content .service_aside .service_list li .service_pic {
+            display: none; }
+          .service_content .service_aside .service_list li .service_list_content {
+            float: none;
+            width: auto;
+            height: auto;
+            margin-left: 0;
+            position: static; }
+            .service_content .service_aside .service_list li .service_list_content h2 {
+              margin: 0;
+              margin-top: 50px;
+              font-weight: lighter; }
+              .service_content .service_aside .service_list li .service_list_content h2 a {
+                text-decoration: none;
+                font-size: 29px;
+                color: #000000;
+                font-weight: lighter; }
+            .service_content .service_aside .service_list li .service_list_content div {
+              margin-top: 24px;
+              width: auto;
+              height: auto; }
+              .service_content .service_aside .service_list li .service_list_content div p {
+                margin: 0;
+                font-size: 16px;
+                color: #000000;
+                line-height: 25px;
+                font-weight: lighter; }
+            .service_content .service_aside .service_list li .service_list_content .service_list_more {
+              padding: 11px 41px;
+              background: #7e6bb5;
+              text-decoration: none;
+              border-radius: 10px;
+              font-size: 16px;
+              color: #ffffff;
+              position: absolute;
+              bottom: 45px;
+              left: 38px; }
+    .service_content .service_right {
+      display: none; } }
