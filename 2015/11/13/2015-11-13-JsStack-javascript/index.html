@@ -1,0 +1,811 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="数据结构与算法," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="栈是一种特殊的列表，栈内的元素只能通过列表的一端访问，这一端叫做栈的栈顶。栈被称为一种后入先出（LIFO）的数据结构...">
+<meta name="keywords" content="数据结构与算法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript基础数据结构 - 栈">
+<meta property="og:url" content="http://yoursite.com/2015/11/13/2015-11-13-JsStack-javascript/index.html">
+<meta property="og:site_name" content="Stack">
+<meta property="og:description" content="栈是一种特殊的列表，栈内的元素只能通过列表的一端访问，这一端叫做栈的栈顶。栈被称为一种后入先出（LIFO）的数据结构...">
+<meta property="og:updated_time" content="2017-04-06T07:53:24.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript基础数据结构 - 栈">
+<meta name="twitter:description" content="栈是一种特殊的列表，栈内的元素只能通过列表的一端访问，这一端叫做栈的栈顶。栈被称为一种后入先出（LIFO）的数据结构...">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2015/11/13/2015-11-13-JsStack-javascript/"/>
+
+  <title> JavaScript基础数据结构 - 栈 | Stack </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Stack</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">小钢炮_</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                JavaScript基础数据结构 - 栈
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-11-13T00:00:00+08:00" content="2015-11-13">
+              2015-11-13
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/数据结构与算法/" itemprop="url" rel="index">
+                    <span itemprop="name">数据结构与算法</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/11/13/2015-11-13-JsStack-javascript/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/11/13/2015-11-13-JsStack-javascript/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h3><h4 id="1-栈的定义"><a href="#1-栈的定义" class="headerlink" title="1.栈的定义"></a>1.栈的定义</h4><p>栈是一种特殊的列表，栈内的元素只能通过列表的一端访问，这一端叫做栈的栈顶。栈被称为一种后入先出（LIFO）的数据结构。</p>
+<p>对栈的两种主要操作是将一个元素压入栈和将一个元素弹出栈。入栈使用push() 方法，出栈使用pop()方法。预览栈顶元素使用peek()方法。</p>
+<h4 id="2-栈的实现"><a href="#2-栈的实现" class="headerlink" title="2.栈的实现"></a>2.栈的实现</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Stack</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.dataStore = [];</div><div class="line">    <span class="keyword">this</span>.top = <span class="number">0</span>;</div><div class="line">    <span class="keyword">this</span>.push = push;</div><div class="line">    <span class="keyword">this</span>.pop = pop;</div><div class="line">    <span class="keyword">this</span>.peek = peek;</div><div class="line">    <span class="keyword">this</span>.length = length;</div><div class="line">    <span class="keyword">this</span>.clear = clear;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//push入栈操作</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">push</span>(<span class="params">element</span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.dataStore[<span class="keyword">this</span>.top++] = element;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//pop出栈操作</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">pop</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.dataStore[--<span class="keyword">this</span>.top];</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//peek预览栈顶元素</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">peek</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.dataStore[<span class="keyword">this</span>.top - <span class="number">1</span>];</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//length查询栈元素个数</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">length</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.top;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//clear清空栈</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">clear</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.top = <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="3-使用Stack类"><a href="#3-使用Stack类" class="headerlink" title="3.使用Stack类"></a>3.使用Stack类</h4><p>3.1数制间的相互转换</p>
+<p>可以利用栈将一个数字从一种数制转换成另一种数制。假设想将数字n 转换为以b 为基数的数字，实现转换的算法如下。</p>
+<p>1.最高位为n%b，将此位压入栈。</p>
+<p>2.使用n/b代替n。</p>
+<p>3.重复步骤1 和2，直到n 等于0，且没有余数。</p>
+<p>4.持续将栈内元素弹出，直到栈为空，依次将这些元素排列，就得到转换后数字的字符串形式。</p>
+<blockquote>
+<p>此算法只针对基数为2~9的情况。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">mulBase</span>(<span class="params">num, base</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> s = <span class="keyword">new</span> Stack();</div><div class="line">    <span class="keyword">do</span> &#123;</div><div class="line">        <span class="keyword">var</span> eachBit = num % base;</div><div class="line">        <span class="keyword">var</span> num = num / base;</div><div class="line">        s.push(eachBit);</div><div class="line">    &#125; <span class="keyword">while</span> (num &gt; <span class="number">0</span>);</div><div class="line">    <span class="keyword">var</span> str = <span class="string">''</span>;</div><div class="line">    <span class="keyword">while</span> (s.length() &gt; <span class="number">0</span>) &#123;</div><div class="line">        str += s.pop();</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> str;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>3.2回文</p>
+<p>回文是指这样一种现象：一个单词、短语或数字，从前往后写和从后往前写都是一样的。比如，单词“dad”、“racecar”就是回文;</p>
+<p>使用栈，可以轻松判断一个字符串是否是回文。我们将拿到的字符串的每个字符按从左至右的顺序压入栈。当字符串中的字符都入栈后，栈内就保存了一个反转后的字符串，最后的字符在栈顶，第一个字符在栈底.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">isPalidrome</span>(<span class="params">word</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> s = <span class="keyword">new</span> Stack();</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; word.length; i++) &#123;</div><div class="line">        s.push(word[i]);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">var</span> rword = <span class="string">""</span>;</div><div class="line">    <span class="keyword">while</span> (s.length() &gt; <span class="number">0</span>) &#123;</div><div class="line">        rword += s.pop();</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span> (word === rword) &#123;</div><div class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>3.3递归的演示</p>
+<p>使用栈来模拟阶乘</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">factorial</span>(<span class="params">n</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> s = <span class="keyword">new</span> Stack();</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</div><div class="line">        s.push(i);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">var</span> product = <span class="number">1</span>;</div><div class="line">    <span class="keyword">while</span> (s.length() &gt; <span class="number">0</span>) &#123;</div><div class="line">        product *= s.pop();</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> product;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="4-练习"><a href="#4-练习" class="headerlink" title="4.练习"></a>4.练习</h4><p>4.1栈可以用来判断一个算术表达式中的括号是否匹配。编写一个函数，该函数接受一个算术表达式作为参数，返回括号缺失的位置。下面是一个括号不匹配的算术表达式的例子：2.3 + 23 / 12 + (3.14159×0.24。</p>
+<blockquote>
+<p>遍历一遍表达式，如果遇到”(“则压入栈，如果遇到”)”检查栈顶是否是”(“，如果不是则不匹配，遍历一遍之后，检查栈是否为空，如果不为空则不匹配。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">cheackBracket</span>(<span class="params">str</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> arr = str.split(<span class="string">""</span>);</div><div class="line">    <span class="keyword">var</span> s = <span class="keyword">new</span> Stack();</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; arr.length; i++) &#123;</div><div class="line">        <span class="keyword">if</span> (arr[i] === <span class="string">"("</span>) &#123;</div><div class="line">            s.push(arr[i]);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (arr[i] === <span class="string">")"</span>) &#123;</div><div class="line">            <span class="keyword">if</span> (s.pop() === <span class="string">"("</span>) &#123;</div><div class="line">                <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                <span class="keyword">return</span> i;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span> (s.length() &gt; <span class="number">0</span>) &#123;</div><div class="line">        <span class="keyword">return</span> str.lastIndexOf(<span class="string">"("</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/数据结构与算法/" rel="tag">#数据结构与算法</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/11/15/2015-11-15-Node_1-node/" rel="next" title="JavaScript的模块机制">
+                <i class="fa fa-chevron-left"></i> JavaScript的模块机制
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/11/12/2015-11-12-JsList-javascript/" rel="prev" title="JavaScript基础数据结构 - 列表">
+                JavaScript基础数据结构 - 列表 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2015/11/13/2015-11-13-JsStack-javascript/"
+           data-title="JavaScript基础数据结构 - 栈" data-url="http://yoursite.com/2015/11/13/2015-11-13-JsStack-javascript/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpeg"
+               alt="GemiCat" />
+          <p class="site-author-name" itemprop="name">GemiCat</p>
+          <p class="site-description motion-element" itemprop="description">该用户没有什么想说的</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">19</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#栈"><span class="nav-number">1.</span> <span class="nav-text">栈</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-栈的定义"><span class="nav-number">1.1.</span> <span class="nav-text">1.栈的定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-栈的实现"><span class="nav-number">1.2.</span> <span class="nav-text">2.栈的实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-使用Stack类"><span class="nav-number">1.3.</span> <span class="nav-text">3.使用Stack类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-练习"><span class="nav-number">1.4.</span> <span class="nav-text">4.练习</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">GemiCat</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"gemicat"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

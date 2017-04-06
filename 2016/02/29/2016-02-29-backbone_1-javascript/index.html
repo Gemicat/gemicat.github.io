@@ -1,0 +1,815 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="javascript," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="backbone.js提供了一套web开发的框架，通过Models进行key-value绑定及custom事件处理，通过Collections提供一套丰富的API用于枚举功能通过Views来进行事件处理及与现有的Application通过RESTful JSON接口进行交互.它是基于jquery和underscore的一个js框架...">
+<meta name="keywords" content="javascript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Backbone.JS从入门到放弃">
+<meta property="og:url" content="http://yoursite.com/2016/02/29/2016-02-29-backbone_1-javascript/index.html">
+<meta property="og:site_name" content="Stack">
+<meta property="og:description" content="backbone.js提供了一套web开发的框架，通过Models进行key-value绑定及custom事件处理，通过Collections提供一套丰富的API用于枚举功能通过Views来进行事件处理及与现有的Application通过RESTful JSON接口进行交互.它是基于jquery和underscore的一个js框架...">
+<meta property="og:updated_time" content="2017-04-06T07:53:24.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Backbone.JS从入门到放弃">
+<meta name="twitter:description" content="backbone.js提供了一套web开发的框架，通过Models进行key-value绑定及custom事件处理，通过Collections提供一套丰富的API用于枚举功能通过Views来进行事件处理及与现有的Application通过RESTful JSON接口进行交互.它是基于jquery和underscore的一个js框架...">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/02/29/2016-02-29-backbone_1-javascript/"/>
+
+  <title> Backbone.JS从入门到放弃 | Stack </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Stack</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">小钢炮_</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Backbone.JS从入门到放弃
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-02-29T00:00:00+08:00" content="2016-02-29">
+              2016-02-29
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/02/29/2016-02-29-backbone_1-javascript/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/02/29/2016-02-29-backbone_1-javascript/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="1-认识backbone"><a href="#1-认识backbone" class="headerlink" title="1.认识backbone"></a>1.认识backbone</h3><p>backbone.js提供了一套web开发的框架，通过Models进行key-value绑定及custom事件处理，通过Collections提供一套丰富的API用于枚举功能通过Views来进行事件处理及与现有的Application通过RESTful JSON接口进行交互.它是基于jquery和underscore的一个js框架。</p>
+<p>通过backbone，你可以把你的数据当作Models，通过Models你可以创建数据，进行数据验证，销毁或者保存到服务器上。当界面上的操作引起model中属性的变化时，model会触发change的事件;那些用来显示model状态的views会接受到model触发change的消息，进而发出对应的响应，并且重新渲染新的数据到界面。在一个完整的backbone应用中，你不需要写那些胶水代码来从DOM中通过特殊的id来获取节点，或者手工的更新HTML页面，因为在model发生变化时，views会很简单的进行自我更新。</p>
+<h3 id="2-通过helloworld来认识backbone"><a href="#2-通过helloworld来认识backbone" class="headerlink" title="2.通过helloworld来认识backbone"></a>2.通过helloworld来认识backbone</h3><h3 id="3-backbone中的model实例"><a href="#3-backbone中的model实例" class="headerlink" title="3.backbone中的model实例"></a>3.backbone中的model实例</h3><p>backbone中最基础的东西就是model，这个东西就像后端开发中数据库映射的model一样，也是数据对象模型。</p>
+<h4 id="3-1最简单的一个对象"><a href="#3-1最简单的一个对象" class="headerlink" title="3.1最简单的一个对象"></a>3.1最简单的一个对象</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span><span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"Content-Type"</span> <span class="attr">content</span>=<span class="string">"text/html; charset=UTF-8"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"./lib/jquery.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"./lib/underscore.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"./lib/backbone.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="javascript"></span></div><div class="line">    (<span class="function"><span class="keyword">function</span>(<span class="params">$</span>)</span>&#123;</div><div class="line">        </div><div class="line">        <span class="comment">// 创建一个Man对象</span></div><div class="line">        Man = Backbone.Model.extend(&#123;</div><div class="line">            <span class="comment">// 构造函数，默认调用alert弹出 “hi”</span></div><div class="line">            initialize : <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">                alert(<span class="string">'hi'</span>);</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line">        <span class="comment">// 实例化man</span></div><div class="line">        <span class="keyword">var</span> man = <span class="keyword">new</span> Man();</div><div class="line"></div><div class="line">    &#125;)(jQuery);</div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
+<h4 id="3-2对象赋值的两种方法"><a href="#3-2对象赋值的两种方法" class="headerlink" title="3.2对象赋值的两种方法"></a>3.2对象赋值的两种方法</h4><p>直接定义，设置默认值</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 创建一个Man对象</span></div><div class="line">Man = Backbone.Model.extend(&#123;</div><div class="line">    <span class="comment">// 构造函数，默认调用alert弹出 “hi”</span></div><div class="line">    initialize : <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        alert(<span class="string">'hi'</span>);</div><div class="line">    &#125;,</div><div class="line">    <span class="attr">defaults</span> : &#123;</div><div class="line">        <span class="attr">name</span> : <span class="string">'张三'</span>,</div><div class="line">        <span class="attr">age</span> : <span class="number">38</span></div><div class="line">    &#125;</div><div class="line">&#125;);</div><div class="line"><span class="comment">// 实例化man</span></div><div class="line"><span class="keyword">var</span> man = <span class="keyword">new</span> Man();</div><div class="line">alert(man.get(<span class="string">'age'</span>));</div></pre></td></tr></table></figure>
+<p>赋值时定义</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 创建一个Man对象</span></div><div class="line">Man = Backbone.Model.extend(&#123;</div><div class="line">    <span class="comment">// 构造函数，默认调用alert弹出 “hi”</span></div><div class="line">    initialize : <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        alert(<span class="string">'hi'</span>);</div><div class="line">    &#125;</div><div class="line">&#125;);</div><div class="line"><span class="comment">// 实例化man</span></div><div class="line"><span class="keyword">var</span> man = <span class="keyword">new</span> Man();</div><div class="line">man.set(&#123;<span class="attr">name</span>:<span class="string">'李四'</span>, <span class="attr">age</span>:<span class="number">28</span>&#125;);</div><div class="line">alert(man.get(<span class="string">'age'</span>))</div></pre></td></tr></table></figure>
+<h4 id="3-3对象中的方法"><a href="#3-3对象中的方法" class="headerlink" title="3.3对象中的方法"></a>3.3对象中的方法</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 创建一个Man对象</span></div><div class="line">Man = Backbone.Model.extend(&#123;</div><div class="line">    <span class="comment">// 构造函数，默认调用alert弹出 “hi”</span></div><div class="line">    initialize : <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        alert(<span class="string">'hi'</span>);</div><div class="line">    &#125;,</div><div class="line">    <span class="attr">defaults</span> : &#123;</div><div class="line">        <span class="attr">name</span> : <span class="string">'张三'</span>,</div><div class="line">        <span class="attr">age</span> : <span class="number">38</span></div><div class="line">    &#125;,</div><div class="line">    <span class="attr">aboutMe</span> : <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="string">'我叫'</span> + <span class="keyword">this</span>.get(<span class="string">'name'</span>) + <span class="string">'，今年'</span> + <span class="keyword">this</span>.get(<span class="string">'age'</span>) + <span class="string">'岁。'</span>;</div><div class="line">    &#125;</div><div class="line">&#125;);</div><div class="line"><span class="comment">// 实例化man</span></div><div class="line"><span class="keyword">var</span> man = <span class="keyword">new</span> Man();</div><div class="line">alert(man.aboutMe());</div></pre></td></tr></table></figure>
+<h4 id="3-4监听对象中属性的变化"><a href="#3-4监听对象中属性的变化" class="headerlink" title="3.4监听对象中属性的变化"></a>3.4监听对象中属性的变化</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 创建一个Man对象</span></div><div class="line">Man = Backbone.Model.extend(&#123;</div><div class="line">    <span class="comment">// 构造函数，默认调用alert弹出 “hi”</span></div><div class="line">    initialize : <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        alert(<span class="string">'hi'</span>);</div><div class="line">        <span class="comment">// 在初始化时绑定监听 change:监听的对象</span></div><div class="line">        <span class="keyword">this</span>.bind(<span class="string">'change:name'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">            <span class="keyword">var</span> name = <span class="keyword">this</span>.get(<span class="string">'name'</span>);</div><div class="line">            alert(<span class="string">'你改变了name属性为：'</span> + name);</div><div class="line">        &#125;)</div><div class="line">    &#125;,</div><div class="line">    <span class="attr">defaults</span> : &#123;</div><div class="line">        <span class="attr">name</span> : <span class="string">'张三'</span>,</div><div class="line">        <span class="attr">age</span> : <span class="number">38</span></div><div class="line">    &#125;,</div><div class="line">    <span class="attr">aboutMe</span> : <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="string">'我叫'</span> + <span class="keyword">this</span>.get(<span class="string">'name'</span>) + <span class="string">'，今年'</span> + <span class="keyword">this</span>.get(<span class="string">'age'</span>) + <span class="string">'岁。'</span>;</div><div class="line">    &#125;</div><div class="line">&#125;);</div><div class="line"><span class="comment">// 实例化man</span></div><div class="line"><span class="keyword">var</span> man = <span class="keyword">new</span> Man();</div><div class="line"><span class="comment">// 设置name的值来触发change事件</span></div><div class="line">man.set(&#123;<span class="attr">name</span>:<span class="string">'gemicat'</span>&#125;);</div></pre></td></tr></table></figure>
+<h4 id="3-5为对象添加验证规则，以及错误提示"><a href="#3-5为对象添加验证规则，以及错误提示" class="headerlink" title="3.5为对象添加验证规则，以及错误提示"></a>3.5为对象添加验证规则，以及错误提示</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 创建一个Man对象</span></div><div class="line">Man = Backbone.Model.extend(&#123;</div><div class="line">    <span class="comment">// 构造函数，默认调用alert弹出 “hi”</span></div><div class="line">    initialize : <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">'hi'</span>);</div><div class="line">        <span class="comment">// 在初始化时绑定监听 change:监听的对象</span></div><div class="line">        <span class="keyword">this</span>.bind(<span class="string">'change:name'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">            <span class="keyword">var</span> name = <span class="keyword">this</span>.get(<span class="string">'name'</span>);</div><div class="line">            <span class="built_in">console</span>.log(<span class="string">'你改变了name属性为：'</span> + name);</div><div class="line">        &#125;);</div><div class="line">        <span class="comment">// 绑定当遇到错误出如何处理</span></div><div class="line">        <span class="keyword">this</span>.on(<span class="string">'invalid'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">model, error</span>)</span>&#123;</div><div class="line">            <span class="built_in">console</span>.log(error);</div><div class="line">        &#125;);</div><div class="line">    &#125;,</div><div class="line">    <span class="attr">defaults</span> : &#123;</div><div class="line">        <span class="attr">name</span> : <span class="string">'张三'</span>,</div><div class="line">        <span class="attr">age</span> : <span class="number">38</span></div><div class="line">    &#125;,</div><div class="line">    <span class="comment">// 设置错误类型，当名字为空时返回以下字符串</span></div><div class="line">    validate : <span class="function"><span class="keyword">function</span>(<span class="params">attrs</span>)</span>&#123;</div><div class="line">        <span class="keyword">if</span>(attrs.name == <span class="string">''</span>)&#123;</div><div class="line">            <span class="keyword">return</span> <span class="string">"name不能为空"</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;,</div><div class="line">    <span class="attr">aboutMe</span> : <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="string">'我叫'</span> + <span class="keyword">this</span>.get(<span class="string">'name'</span>) + <span class="string">'，今年'</span> + <span class="keyword">this</span>.get(<span class="string">'age'</span>) + <span class="string">'岁。'</span>;</div><div class="line">    &#125;</div><div class="line">&#125;);</div><div class="line"><span class="comment">// 实例化man</span></div><div class="line"><span class="keyword">var</span> man = <span class="keyword">new</span> Man();</div><div class="line"><span class="comment">// 设置空 name，必须要加&#123;validate:true&#125;来强制使用错误检测</span></div><div class="line">man.set(&#123;<span class="attr">name</span>:<span class="string">''</span>&#125;,&#123;<span class="attr">validate</span>:<span class="literal">true</span>&#125;);</div></pre></td></tr></table></figure>
+<h3 id="4-backbone的collection实例"><a href="#4-backbone的collection实例" class="headerlink" title="4.backbone的collection实例"></a>4.backbone的collection实例</h3><p>collection是model对象的一个有序的集合</p>
+<h4 id="4-1关于book和bookself的例子"><a href="#4-1关于book和bookself的例子" class="headerlink" title="4.1关于book和bookself的例子"></a>4.1关于book和bookself的例子</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">Book = Backbone.Model.extend(&#123;</div><div class="line">    <span class="attr">default</span> : &#123;</div><div class="line">        <span class="attr">title</span> : <span class="string">'default'</span></div><div class="line">    &#125;,</div><div class="line">    <span class="attr">initalize</span> : <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="comment">// init事件</span></div><div class="line">    &#125;</div><div class="line">&#125;);</div><div class="line"></div><div class="line">BookShelf = Backbone.Collection.extend(&#123;</div><div class="line">    <span class="attr">model</span> : Book</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="keyword">var</span> book1 = <span class="keyword">new</span> Book(&#123;<span class="attr">title</span>:<span class="string">'book1'</span>&#125;);</div><div class="line"><span class="keyword">var</span> book2 = <span class="keyword">new</span> Book(&#123;<span class="attr">title</span>:<span class="string">'book2'</span>&#125;);</div><div class="line"><span class="keyword">var</span> book3 = <span class="keyword">new</span> Book(&#123;<span class="attr">title</span>:<span class="string">'book3'</span>&#125;);</div><div class="line"><span class="comment">// 添加图书，或者使用bookShelf.add(book1);</span></div><div class="line"><span class="keyword">var</span> bookShelf = <span class="keyword">new</span> BookShelf([book1, book2, book3]);</div><div class="line"></div><div class="line">bookShelf.each(<span class="function"><span class="keyword">function</span>(<span class="params">book</span>)</span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(book.get(<span class="string">'title'</span>));</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<h4 id="4-2使用fetch从服务器端获取数据"><a href="#4-2使用fetch从服务器端获取数据" class="headerlink" title="4.2使用fetch从服务器端获取数据"></a>4.2使用fetch从服务器端获取数据</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">bookShelf.fetch(&#123;</div><div class="line">    <span class="attr">url</span> :<span class="string">'/getbooks/'</span>, </div><div class="line">    <span class="attr">success</span> : <span class="function"><span class="keyword">function</span>(<span class="params">collection, res</span>)</span>&#123;</div><div class="line">        collection.each(<span class="function"><span class="keyword">function</span>(<span class="params">book</span>)</span>&#123;</div><div class="line">            <span class="built_in">console</span>.log(book.get(<span class="string">'title'</span>));</div><div class="line">        &#125;),</div><div class="line">    <span class="attr">error</span> : <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">'error'</span>);</div><div class="line">    &#125;</div><div class="line">&#125;&#125;)</div></pre></td></tr></table></figure>
+<h4 id="4-3reset方法"><a href="#4-3reset方法" class="headerlink" title="4.3reset方法"></a>4.3reset方法</h4><p>这个方法是要喝fetch进行配合使用，collection在fetch到数据后，会调用reset方法。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">bookShelf.bind(<span class="string">'reset'</span>, showAllBooks);</div><div class="line">showAllBooks = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    bookShelf.each(<span class="function"><span class="keyword">function</span>(<span class="params">book</span>)</span>&#123;</div><div class="line">        <span class="comment">// 操作</span></div><div class="line">    &#125;)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>绑定的步骤要在fetch之前进行</p>
+</blockquote>
+<h3 id="5-backbone中的router实例"><a href="#5-backbone中的router实例" class="headerlink" title="5.backbone中的router实例"></a>5.backbone中的router实例</h3><p>router是路由，Backbone.Router承担了一部分控制器的工作，会把链接中的#标签当作是url路径，将特定的url或者锚点规则绑定到一个指定的方法。</p>
+<h4 id="5-1一个简单的例子"><a href="#5-1一个简单的例子" class="headerlink" title="5.1一个简单的例子"></a>5.1一个简单的例子</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> AppRouter = Backbone.Router.extend(&#123;</div><div class="line">    <span class="attr">routes</span> : &#123;</div><div class="line">        <span class="string">""</span> : <span class="string">'main'</span>,</div><div class="line">        <span class="string">"topic"</span> : <span class="string">'renderList'</span>,</div><div class="line">        <span class="string">"topic/:id"</span> : <span class="string">'renderDetail'</span>,</div><div class="line">        <span class="string">"*actions"</span> : <span class="string">"defaultRoute"</span></div><div class="line">    &#125;,</div><div class="line">    <span class="attr">main</span> : <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">'应用入口方法'</span>);</div><div class="line">    &#125;,</div><div class="line">    <span class="attr">renderList</span> : <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">"渲染列表方法"</span>);</div><div class="line">    &#125;,</div><div class="line">    <span class="attr">renderDetail</span> : <span class="function"><span class="keyword">function</span>(<span class="params">id</span>)</span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">"渲染详情的方法为："</span> + id);</div><div class="line">    &#125;,</div><div class="line">    <span class="attr">defaultRoute</span> : <span class="function"><span class="keyword">function</span>(<span class="params">actions</span>)</span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(actions);</div><div class="line">    &#125;</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="keyword">var</span> app_router = <span class="keyword">new</span> AppRouter;</div><div class="line">Backbone.history.start();</div></pre></td></tr></table></figure>
+<p>通过调用Backbone.history.start()来初始化这个Router。<br>传参的方式有两种，一种是用 “:” 来把#后对应位置作为参数，一种是”*”通配符。</p>
+<h3 id="6-backbone中的view实例"><a href="#6-backbone中的view实例" class="headerlink" title="6.backbone中的view实例"></a>6.backbone中的view实例</h3><p>Model和Collection都是用于数据管理和交互，视图（View）将这些数据渲染到页面。</p>
+<p>Backbone中的视图提供了一组处理DOM和渲染模型数据的方法。</p>
+<p>视图类提供的方法就是在Backbone.View的基础上进行扩展。</p>
+<h4 id="6-1定义和创建视图"><a href="#6-1定义和创建视图" class="headerlink" title="6.1定义和创建视图"></a>6.1定义和创建视图</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">title</span>=<span class="string">"列表"</span> <span class="attr">style</span>=<span class="string">"color:red"</span> <span class="attr">id</span>=<span class="string">"list"</span> <span class="attr">class</span>=<span class="string">"listview"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span>  </div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="javascript">  </span></div><div class="line">    <span class="keyword">var</span> ListView = Backbone.View.extend(&#123;  </div><div class="line">        <span class="attr">el</span> : <span class="string">'#list'</span>  </div><div class="line">    &#125;);  </div><div class="line">    <span class="keyword">var</span> listview = <span class="keyword">new</span> ListView();  </div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>listView中的el属性为字符串形式的dom选择器，还可以动态生成dom。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="javascript">  </span></div><div class="line">    <span class="keyword">var</span> ListView = Backbone.View.extend(&#123;  </div><div class="line">        <span class="attr">tagName</span> : <span class="string">'div'</span>,  </div><div class="line">        <span class="attr">className</span> : <span class="string">'listview'</span>,  </div><div class="line">        <span class="attr">id</span> : <span class="string">'list'</span>,  </div><div class="line">        <span class="attr">attributes</span> : &#123;  </div><div class="line">            <span class="attr">title</span> : <span class="string">'列表'</span>,  </div><div class="line">            <span class="attr">style</span> : <span class="string">'color:red'</span>  </div><div class="line">        &#125;,  </div><div class="line">        <span class="attr">render</span> : <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;  </div><div class="line">            <span class="keyword">this</span>.el.innerHTML = <span class="string">'Hello World!'</span>;  </div><div class="line">            <span class="built_in">document</span>.body.appendChild(<span class="keyword">this</span>.el);  </div><div class="line">        &#125;  </div><div class="line">    &#125;);  </div><div class="line">    <span class="keyword">var</span> listview = <span class="keyword">new</span> ListView(); </div><div class="line">    <span class="comment">//rander()方法将新标签添加到页面，不然只会保存在el中。 </span></div><div class="line">    listview.render();  </div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+<h4 id="6-2处理DOM事件"><a href="#6-2处理DOM事件" class="headerlink" title="6.2处理DOM事件"></a>6.2处理DOM事件</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">id</span>=<span class="string">"view"</span>&gt;</span>  </div><div class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">value</span>=<span class="string">"Create"</span> <span class="attr">id</span>=<span class="string">"create"</span> /&gt;</span>  </div><div class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">value</span>=<span class="string">"Read"</span> <span class="attr">id</span>=<span class="string">"read"</span> /&gt;</span>  </div><div class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">value</span>=<span class="string">"Update"</span> <span class="attr">id</span>=<span class="string">"update"</span> /&gt;</span>  </div><div class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">value</span>=<span class="string">"Delete"</span> <span class="attr">id</span>=<span class="string">"delete"</span> /&gt;</span>  </div><div class="line"><span class="tag">&lt;/<span class="name">p</span>&gt;</span>  </div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="javascript">  </span></div><div class="line">    <span class="keyword">var</span> MyView = Backbone.View.extend(&#123;  </div><div class="line">        <span class="attr">el</span> : <span class="string">'#view'</span>,  </div><div class="line">        <span class="attr">events</span> : &#123;  </div><div class="line">            <span class="string">'click #create'</span> : <span class="string">'createData'</span>,  </div><div class="line">            <span class="string">'click #read'</span> : <span class="string">'readData'</span>,  </div><div class="line">            <span class="string">'click #update'</span> : <span class="string">'updateData'</span>,  </div><div class="line">            <span class="string">'click #delete'</span> : <span class="string">'deleteData'</span>  </div><div class="line">        &#125;,  </div><div class="line">        <span class="attr">createData</span> : <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;  </div><div class="line">            <span class="comment">// todo  </span></div><div class="line">        &#125;,  </div><div class="line">        <span class="attr">readData</span> : <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;  </div><div class="line">            <span class="comment">// todo  </span></div><div class="line">        &#125;,  </div><div class="line">        <span class="attr">updateData</span> : <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;  </div><div class="line">            <span class="comment">// todo  </span></div><div class="line">        &#125;,  </div><div class="line">        <span class="attr">deleteData</span> : <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;  </div><div class="line">            <span class="comment">// todo  </span></div><div class="line">        &#125;  </div><div class="line">    &#125;);  </div><div class="line">    <span class="keyword">var</span> view = <span class="keyword">new</span> MyView();  </div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+<h4 id="6-3View中的模板"><a href="#6-3View中的模板" class="headerlink" title="6.3View中的模板"></a>6.3View中的模板</h4>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/javascript/" rel="tag">#javascript</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/03/08/2016-03-08-high_js-javascrip/" rel="next" title="高性能javascript">
+                <i class="fa fa-chevron-left"></i> 高性能javascript
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/02/17/2016-02-17-Qs_1-codility/" rel="prev" title="刷题">
+                刷题 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/02/29/2016-02-29-backbone_1-javascript/"
+           data-title="Backbone.JS从入门到放弃" data-url="http://yoursite.com/2016/02/29/2016-02-29-backbone_1-javascript/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpeg"
+               alt="GemiCat" />
+          <p class="site-author-name" itemprop="name">GemiCat</p>
+          <p class="site-description motion-element" itemprop="description">该用户没有什么想说的</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">19</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-认识backbone"><span class="nav-number">1.</span> <span class="nav-text">1.认识backbone</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-通过helloworld来认识backbone"><span class="nav-number">2.</span> <span class="nav-text">2.通过helloworld来认识backbone</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-backbone中的model实例"><span class="nav-number">3.</span> <span class="nav-text">3.backbone中的model实例</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1最简单的一个对象"><span class="nav-number">3.1.</span> <span class="nav-text">3.1最简单的一个对象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2对象赋值的两种方法"><span class="nav-number">3.2.</span> <span class="nav-text">3.2对象赋值的两种方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3对象中的方法"><span class="nav-number">3.3.</span> <span class="nav-text">3.3对象中的方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-4监听对象中属性的变化"><span class="nav-number">3.4.</span> <span class="nav-text">3.4监听对象中属性的变化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-5为对象添加验证规则，以及错误提示"><span class="nav-number">3.5.</span> <span class="nav-text">3.5为对象添加验证规则，以及错误提示</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-backbone的collection实例"><span class="nav-number">4.</span> <span class="nav-text">4.backbone的collection实例</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-1关于book和bookself的例子"><span class="nav-number">4.1.</span> <span class="nav-text">4.1关于book和bookself的例子</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-2使用fetch从服务器端获取数据"><span class="nav-number">4.2.</span> <span class="nav-text">4.2使用fetch从服务器端获取数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-3reset方法"><span class="nav-number">4.3.</span> <span class="nav-text">4.3reset方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-backbone中的router实例"><span class="nav-number">5.</span> <span class="nav-text">5.backbone中的router实例</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#5-1一个简单的例子"><span class="nav-number">5.1.</span> <span class="nav-text">5.1一个简单的例子</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-backbone中的view实例"><span class="nav-number">6.</span> <span class="nav-text">6.backbone中的view实例</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#6-1定义和创建视图"><span class="nav-number">6.1.</span> <span class="nav-text">6.1定义和创建视图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-2处理DOM事件"><span class="nav-number">6.2.</span> <span class="nav-text">6.2处理DOM事件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-3View中的模板"><span class="nav-number">6.3.</span> <span class="nav-text">6.3View中的模板</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">GemiCat</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"gemicat"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
