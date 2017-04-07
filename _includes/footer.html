@@ -103,6 +103,15 @@
 <!-- Custom Theme JavaScript -->
 <script src="{{ "/js/clean-blog.min.js " | prepend: site.baseurl }}"></script>
 
+<!-- Highlight.js -->
+<script type="text/javascript" src="http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js"></script>
+
+<script>
+    $(function() {
+        hljs.initHighlightingOnLoad();
+    });
+</script>
+
 <link rel="stylesheet" href="/css/backtop.css">
 <!-- Back Top -->
 <script type="text/javascript" src="/js/backtop.js"></script>
@@ -111,12 +120,4 @@
     <a href="#top" title="回到顶部"></a>
 </div>
 
-
-
-<!-- Highlight.js -->
-<script>
-    async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js",function(){
-        hljs.initHighlightingOnLoad();
-    })
-</script>
 <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
