@@ -7,7 +7,7 @@ tags: [LeetCode]
 description: none
 ---
 
-### PermMissingElem
+## PermMissingElem
 
 Find the missing element in a given permutation.
 
@@ -43,7 +43,7 @@ Find the missing element in a given permutation.
         return ++len;
     }
 
-### 1.Two Sum
+## 1.Two Sum
 
 Given an array of integers, return indices of the two numbers such that they add up to a specific target.
 
@@ -76,7 +76,7 @@ __Example__
         return false;
     };
 
-### 2.ZigZag Conversion
+## 2.ZigZag Conversion
 
 The string `"PAYPALISHIRING"` is written in a zigzag pattern on a given number of rows like this: (you may want to display this pattern in a fixed font for better legibility)
 
@@ -146,7 +146,7 @@ convert(`"PAYPALISHIRING"`, 3) should return `"PAHNAPLSIIGYIR"`.
         return ret;
     };
 
-### 3.Reverse Integer
+## 3.Reverse Integer
 
 Reverse digits of an integer.
 

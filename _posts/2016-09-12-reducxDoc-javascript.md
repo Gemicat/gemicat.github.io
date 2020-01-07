@@ -7,9 +7,9 @@ tags: [javascript]
 description: none
 ---
 
-### 基础
+## 基础
 
-#### Action
+### Action
 
 Action 创建函数 就是生成 action 的方法。“action” 和 “action 创建函数” 这两个概念很容易混在一起，使用时最好注意区分。
 
@@ -29,7 +29,7 @@ Redux 中只需把 action 创建函数的结果传给 dispatch() 方法即可发
 
 store 里能直接通过 store.dispatch() 调用 dispatch() 方法，但是多数情况下你会使用 react-redux 提供的 connect() 帮助器来调用。bindActionCreators() 可以自动把多个 action 创建函数 绑定到 dispatch() 方法上。
 
-#### Reducer
+### Reducer
 
 reducer 就是一个纯函数，接收旧的 state 和 action，返回新的 state。
 
@@ -43,7 +43,7 @@ combineReducers 接收一个对象，可以把所有顶级的 reducer 放到一�
     import * as reducers from './reducers'
     const todoApp = combineReducers(reducers)
 
-#### Store
+### Store
 
 Store 就是把它们联系到一起的对象。Store 有以下职责：
 
@@ -63,7 +63,7 @@ createStore() 的第二个参数是可选的, 用于设置 state 初始状态。
 
     let store = createStore(todoApp, window.STATE_FROM_SERVER)
 
-#### 数据流
+### 数据流
 
 严格的单向数据流是 Redux 架构的设计核心。
 
