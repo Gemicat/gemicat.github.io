@@ -168,3 +168,15 @@
         });
     });
 </script>
+
+<!-- 头部粒子效果 -->
+<link href="/css/snow.css" rel="stylesheet">
+<script>
+$(function () {
+    var content = ''
+    var div = document.createElement("div");
+    for (var i = 0; i < 100; i++) content += '<div class="snow"></div>'
+    var parent = $('header.intro-header')
+    parent.length && parent.append($(content))
+});
+</script>
