@@ -1,5 +1,10 @@
 // 动态背景条跟随鼠标移动
 ! function () {
+  // 小尺寸下不执行
+  if (window.screen.width < 800) {
+    return false
+  }
+
   function n(n, e, t) {
     return n.getAttribute(e) || t
   }
