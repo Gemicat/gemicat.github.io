@@ -5,7 +5,7 @@
     "homepage": "http://startbootstrap.com",
     "author": "Start Bootstrap",
     "scripts": {
-        "dev": "jekyll serve --incremental"
+        "dev": "jekyll serve"
     },
     "devDependencies": {
         "grunt": "~0.4.5",

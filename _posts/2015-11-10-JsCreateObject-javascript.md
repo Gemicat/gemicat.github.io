@@ -1,6 +1,6 @@
 ---
 layout: post
-title: javascript创建对象的7种方法
+title: javascript创建对象的 7 种方法
 date: 2015-11-11
 categories: blog
 tags: [javascript]

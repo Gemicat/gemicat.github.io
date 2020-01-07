@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 列表——JavaScript基础数据结构
+title: 基础数据结构 - 列表
 date: 2015-11-12
 categories: blog
 tags: [数据结构与算法]

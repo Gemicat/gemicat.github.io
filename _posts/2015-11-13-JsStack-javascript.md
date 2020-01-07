@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 栈——JavaScript基础数据结构
+title: 基础数据结构 - 栈
 date: 2015-11-13
 categories: blog
 tags: [数据结构与算法]

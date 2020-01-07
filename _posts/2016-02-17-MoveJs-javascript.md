@@ -1,6 +1,6 @@
 ---
 layout: post
-title: JS运动框架
+title: JS 运动框架
 date: 2016-02-17
 categories: blog
 tags: [javascript]

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: javascript继承的6种方法
+title: javascript继承的 6 种方法
 date: 2015-11-10
 categories: blog
 tags: [javascript]

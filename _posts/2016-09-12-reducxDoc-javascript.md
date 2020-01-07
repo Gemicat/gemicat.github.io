@@ -1,6 +1,6 @@
 ---
 layout: post
-title: redux学习笔记
+title: redux 学习笔记
 date: 2016-09-12
 categories: blog
 tags: [javascript]

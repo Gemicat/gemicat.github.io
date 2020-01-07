@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 队列——JavaScript基础算法
+title: 基础算法 - 队列
 date: 2015-11-16
 categories: blog
 tags: [数据结构与算法]

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Backbone.JS从入门到放弃
+title: Backbone.JS 从入门到放弃
 date: 2016-02-29
 categories: blog
 tags: [javascript]

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 2015算法笔试题
+title: 2015 算法笔试题
 date: 2016-02-17
 categories: blog
 tags: [LeetCode]
