@@ -2,10 +2,16 @@
 
 ## 安装环境
 
-> sudo gem install jekyll
-> sudo gem install bundler
-> bundle install
+```
+sudo gem install jekyll
+
+sudo gem install bundler
+
+bundle install
+```
 
 ## 项目启动
 
-> npm run dev
+```
+npm run dev
+```
