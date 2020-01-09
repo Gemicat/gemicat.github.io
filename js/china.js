@@ -15,7 +15,8 @@ jQuery(document).ready(function ($) {
       "left": x,
       "position": "absolute",
       "font-weight": "bold",
-      "color": "#ff6651"
+      "color": "#ff6651",
+      "user-select": "none"
     });
     $("body").append($i);
     $i.animate({
